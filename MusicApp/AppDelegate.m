@@ -7,6 +7,10 @@
 //
 
 #import "AppDelegate.h"
+#import "View Controllers/TrackTabViewController.h"
+#import "View Controllers/AlbumsTabViewController.h"
+#import "View Controllers/ArtistsTabViewController.h"
+#import "View Controllers/PlaylistsTabViewController.h"
 
 @interface AppDelegate ()
 
@@ -15,13 +19,42 @@
 @implementation AppDelegate
 
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    TrackTabViewController *trackTabViewController = [[TrackTabViewController alloc] init];
+    UINavigationController *trackTabNavigationController = [[UINavigationController alloc] initWithRootViewController:trackTabViewController];
+    trackTabNavigationController.tabBarItem.title = @"Tracks";
+    [trackTabNavigationController.tabBarItem setTitleTextAttributes:@{NSFontAttributeName: [UIFont boldSystemFontOfSize:15.0], NSForegroundColorAttributeName: [UIColor blueColor]} forState:UIControlStateNormal];
+    
+    AlbumsTabViewController *albumsTabViewController = [[AlbumsTabViewController alloc] init];
+    UINavigationController *albumsTabNavigationController = [[UINavigationController alloc] initWithRootViewController:albumsTabViewController];
+    albumsTabNavigationController.tabBarItem.title = @"Albums";
+    [albumsTabNavigationController.tabBarItem setTitleTextAttributes:@{NSFontAttributeName: [UIFont boldSystemFontOfSize:15.0], NSForegroundColorAttributeName: [UIColor blueColor]} forState:UIControlStateNormal];
+    
+    ArtistsTabViewController *artistsTabViewController = [[ArtistsTabViewController alloc] init];
+    UINavigationController *artistsTabNavigationController = [[UINavigationController alloc] initWithRootViewController:artistsTabViewController];
+    artistsTabNavigationController.tabBarItem.title = @"Artists";
+    [artistsTabNavigationController.tabBarItem setTitleTextAttributes:@{NSFontAttributeName: [UIFont boldSystemFontOfSize:15.0], NSForegroundColorAttributeName: [UIColor blueColor]} forState:UIControlStateNormal];
+    
+    PlaylistsTabViewController *playlistsTabViewController = [[PlaylistsTabViewController alloc] init];
+    UINavigationController *playlistsTabNavigationController = [[UINavigationController alloc] initWithRootViewController:playlistsTabViewController];
+    playlistsTabNavigationController.tabBarItem.title = @"Playlists";
+    [playlistsTabNavigationController.tabBarItem setTitleTextAttributes:@{NSFontAttributeName: [UIFont boldSystemFontOfSize:15.0], NSForegroundColorAttributeName: [UIColor blueColor]} forState:UIControlStateNormal];
+    
+    UITabBarController *mainTabBarController = [[UITabBarController alloc] init];
+    mainTabBarController.viewControllers = @[trackTabNavigationController, albumsTabNavigationController, artistsTabNavigationController, playlistsTabNavigationController];
+    
+    [self.window setRootViewController:mainTabBarController];
+    [self.window makeKeyAndVisible];
+    
     return YES;
 }
 
 
-- (void)applicationWillResignActive:(UIApplication *)application {
+- (void)applicationWillResignActive:(UIApplication *)application
+{
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
 }

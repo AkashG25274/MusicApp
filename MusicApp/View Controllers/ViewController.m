@@ -6,13 +6,13 @@
 //  Copyright © 2020 mmt. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "TrackTabViewController.h"
 
-@interface ViewController ()
+@interface TrackTabViewController ()
 
 @end
 
-@implementation ViewController
+@implementation TrackTabViewController 
 
 - (void)viewDidLoad {
     [super viewDidLoad];

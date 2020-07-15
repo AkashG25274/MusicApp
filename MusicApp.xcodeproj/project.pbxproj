@@ -7,14 +7,38 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C101D04524BF2FB900781F10 /* Track.m in Sources */ = {isa = PBXBuildFile; fileRef = C101D04424BF2FB900781F10 /* Track.m */; };
+		C101D04824BF2FD000781F10 /* Artist.m in Sources */ = {isa = PBXBuildFile; fileRef = C101D04724BF2FD000781F10 /* Artist.m */; };
+		C101D04B24BF2FE200781F10 /* Album.m in Sources */ = {isa = PBXBuildFile; fileRef = C101D04A24BF2FE200781F10 /* Album.m */; };
+		C101D04E24BF2FF400781F10 /* Playlist.m in Sources */ = {isa = PBXBuildFile; fileRef = C101D04D24BF2FF400781F10 /* Playlist.m */; };
+		C101D05124BF301600781F10 /* WebRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C101D05024BF301600781F10 /* WebRequestHandler.m */; };
+		C101D05424BF303500781F10 /* MusicAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = C101D05324BF303500781F10 /* MusicAPI.m */; };
+		C101D05724BF3B2200781F10 /* TrackCustomTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C101D05624BF3B2200781F10 /* TrackCustomTableCell.m */; };
 		C1FCAAA424BF04B6001986DD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C1FCAAA324BF04B6001986DD /* AppDelegate.m */; };
 		C1FCAAAC24BF04B8001986DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1FCAAAB24BF04B8001986DD /* Assets.xcassets */; };
 		C1FCAAAF24BF04B8001986DD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1FCAAAD24BF04B8001986DD /* LaunchScreen.storyboard */; };
 		C1FCAAB224BF04B8001986DD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C1FCAAB124BF04B8001986DD /* main.m */; };
-		C1FCAABB24BF05B8001986DD /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1FCAAB924BF05B8001986DD /* ViewController.m */; };
+		C1FCAAC124BF1A2F001986DD /* TrackTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1FCAAC024BF1A2F001986DD /* TrackTabViewController.m */; };
+		C1FCAAC424BF1A6A001986DD /* AlbumsTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1FCAAC324BF1A6A001986DD /* AlbumsTabViewController.m */; };
+		C1FCAAC724BF1A91001986DD /* ArtistsTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1FCAAC624BF1A91001986DD /* ArtistsTabViewController.m */; };
+		C1FCAACA24BF1AB0001986DD /* PlaylistsTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1FCAAC924BF1AB0001986DD /* PlaylistsTabViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C101D04324BF2FB900781F10 /* Track.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Track.h; sourceTree = "<group>"; };
+		C101D04424BF2FB900781F10 /* Track.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Track.m; sourceTree = "<group>"; };
+		C101D04624BF2FD000781F10 /* Artist.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Artist.h; sourceTree = "<group>"; };
+		C101D04724BF2FD000781F10 /* Artist.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Artist.m; sourceTree = "<group>"; };
+		C101D04924BF2FE200781F10 /* Album.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Album.h; sourceTree = "<group>"; };
+		C101D04A24BF2FE200781F10 /* Album.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Album.m; sourceTree = "<group>"; };
+		C101D04C24BF2FF400781F10 /* Playlist.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Playlist.h; sourceTree = "<group>"; };
+		C101D04D24BF2FF400781F10 /* Playlist.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Playlist.m; sourceTree = "<group>"; };
+		C101D04F24BF301600781F10 /* WebRequestHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebRequestHandler.h; sourceTree = "<group>"; };
+		C101D05024BF301600781F10 /* WebRequestHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebRequestHandler.m; sourceTree = "<group>"; };
+		C101D05224BF303500781F10 /* MusicAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MusicAPI.h; sourceTree = "<group>"; };
+		C101D05324BF303500781F10 /* MusicAPI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MusicAPI.m; sourceTree = "<group>"; };
+		C101D05524BF3B2200781F10 /* TrackCustomTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrackCustomTableCell.h; sourceTree = "<group>"; };
+		C101D05624BF3B2200781F10 /* TrackCustomTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TrackCustomTableCell.m; sourceTree = "<group>"; };
 		C1FCAA9F24BF04B6001986DD /* MusicApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1FCAAA224BF04B6001986DD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C1FCAAA324BF04B6001986DD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -22,8 +46,14 @@
 		C1FCAAAE24BF04B8001986DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C1FCAAB024BF04B8001986DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C1FCAAB124BF04B8001986DD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		C1FCAAB924BF05B8001986DD /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		C1FCAABA24BF05B8001986DD /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		C1FCAABF24BF1A2F001986DD /* TrackTabViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrackTabViewController.h; sourceTree = "<group>"; };
+		C1FCAAC024BF1A2F001986DD /* TrackTabViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TrackTabViewController.m; sourceTree = "<group>"; };
+		C1FCAAC224BF1A6A001986DD /* AlbumsTabViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlbumsTabViewController.h; sourceTree = "<group>"; };
+		C1FCAAC324BF1A6A001986DD /* AlbumsTabViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlbumsTabViewController.m; sourceTree = "<group>"; };
+		C1FCAAC524BF1A91001986DD /* ArtistsTabViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArtistsTabViewController.h; sourceTree = "<group>"; };
+		C1FCAAC624BF1A91001986DD /* ArtistsTabViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ArtistsTabViewController.m; sourceTree = "<group>"; };
+		C1FCAAC824BF1AB0001986DD /* PlaylistsTabViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlaylistsTabViewController.h; sourceTree = "<group>"; };
+		C1FCAAC924BF1AB0001986DD /* PlaylistsTabViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlaylistsTabViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,8 +103,16 @@
 		C1FCAAB824BF05B8001986DD /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				C1FCAAB924BF05B8001986DD /* ViewController.m */,
-				C1FCAABA24BF05B8001986DD /* ViewController.h */,
+				C1FCAABF24BF1A2F001986DD /* TrackTabViewController.h */,
+				C1FCAAC024BF1A2F001986DD /* TrackTabViewController.m */,
+				C1FCAAC224BF1A6A001986DD /* AlbumsTabViewController.h */,
+				C1FCAAC324BF1A6A001986DD /* AlbumsTabViewController.m */,
+				C1FCAAC524BF1A91001986DD /* ArtistsTabViewController.h */,
+				C1FCAAC624BF1A91001986DD /* ArtistsTabViewController.m */,
+				C1FCAAC824BF1AB0001986DD /* PlaylistsTabViewController.h */,
+				C1FCAAC924BF1AB0001986DD /* PlaylistsTabViewController.m */,
+				C101D05524BF3B2200781F10 /* TrackCustomTableCell.h */,
+				C101D05624BF3B2200781F10 /* TrackCustomTableCell.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -82,6 +120,8 @@
 		C1FCAABC24BF05E7001986DD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C101D05224BF303500781F10 /* MusicAPI.h */,
+				C101D05324BF303500781F10 /* MusicAPI.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -89,6 +129,14 @@
 		C1FCAABD24BF0614001986DD /* Model Classes */ = {
 			isa = PBXGroup;
 			children = (
+				C101D04324BF2FB900781F10 /* Track.h */,
+				C101D04424BF2FB900781F10 /* Track.m */,
+				C101D04624BF2FD000781F10 /* Artist.h */,
+				C101D04724BF2FD000781F10 /* Artist.m */,
+				C101D04924BF2FE200781F10 /* Album.h */,
+				C101D04A24BF2FE200781F10 /* Album.m */,
+				C101D04C24BF2FF400781F10 /* Playlist.h */,
+				C101D04D24BF2FF400781F10 /* Playlist.m */,
 			);
 			path = "Model Classes";
 			sourceTree = "<group>";
@@ -96,6 +144,8 @@
 		C1FCAABE24BF0620001986DD /* Network Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C101D04F24BF301600781F10 /* WebRequestHandler.h */,
+				C101D05024BF301600781F10 /* WebRequestHandler.m */,
 			);
 			path = "Network Controllers";
 			sourceTree = "<group>";
@@ -169,9 +219,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C101D04524BF2FB900781F10 /* Track.m in Sources */,
+				C101D05124BF301600781F10 /* WebRequestHandler.m in Sources */,
+				C1FCAAC124BF1A2F001986DD /* TrackTabViewController.m in Sources */,
+				C101D04824BF2FD000781F10 /* Artist.m in Sources */,
+				C101D05424BF303500781F10 /* MusicAPI.m in Sources */,
 				C1FCAAB224BF04B8001986DD /* main.m in Sources */,
-				C1FCAABB24BF05B8001986DD /* ViewController.m in Sources */,
+				C1FCAAC424BF1A6A001986DD /* AlbumsTabViewController.m in Sources */,
 				C1FCAAA424BF04B6001986DD /* AppDelegate.m in Sources */,
+				C101D04B24BF2FE200781F10 /* Album.m in Sources */,
+				C1FCAACA24BF1AB0001986DD /* PlaylistsTabViewController.m in Sources */,
+				C1FCAAC724BF1A91001986DD /* ArtistsTabViewController.m in Sources */,
+				C101D05724BF3B2200781F10 /* TrackCustomTableCell.m in Sources */,
+				C101D04E24BF2FF400781F10 /* Playlist.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
