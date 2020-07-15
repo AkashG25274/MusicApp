@@ -24,7 +24,7 @@
     return self;
 }
 
-- (void)getTracks
+- (void)getTracks:(void (^) (NSMutableArray *))completionBlock
 {
     NSURL *url = [NSURL URLWithString:self.sourceUrl];
     
@@ -43,6 +43,8 @@
             Track *newTrack = [[Track alloc] initWith:trackTitle duration:duration andTrackUrl:trackURL];
             [self.tracks addObject:newTrack];
         }
+        
+        completionBlock(self.tracks);
         
     }];
     
