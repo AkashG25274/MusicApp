@@ -8,10 +8,13 @@
 
 #import "TrackTabViewController.h"
 #import "TrackCustomTableCell.h"
+#import "../Network Controllers/WebRequestHandler.h"
+#import "../Model Classes/Track.h"
 
 @interface TrackTabViewController ()
 
 @property (strong, nonatomic) UITableView *tableView;
+@property (strong, nonatomic) NSMutableArray *trackList;
 
 @end
 
@@ -26,17 +29,35 @@
     self.tableView.backgroundColor = [UIColor whiteColor];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    
+    self.trackList = [[NSMutableArray alloc] init];
+    [self setUpDataSource];
+}
+
+- (void)setUpDataSource
+{
+    WebRequestHandler *requestHandler = [[WebRequestHandler alloc] init];
+    [requestHandler getTracks:^(NSMutableArray * _Nonnull tracks) {
+        
+        self.trackList = tracks;
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
+    }];
 }
 
 #pragma mark <UITableViewDataSource>
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    return self.trackList.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    Track *currentTrack = self.trackList[indexPath.row];
+    
     TrackCustomTableCell *cell = (TrackCustomTableCell *)[self.tableView dequeueReusableCellWithIdentifier:@"TrackCell"];
     
     if(cell == nil)
@@ -44,7 +65,7 @@
         cell = [[TrackCustomTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"TrackCell"];
     }
     
-    cell.titleLabel.text = @"Title";
+    cell.titleLabel.text = currentTrack.title;
     cell.artistNameLabel.text = @"Artist";
     
     return cell;

@@ -29,7 +29,7 @@
     NSURL *url = [NSURL URLWithString:self.sourceUrl];
     
     NSURLSessionDataTask *downloadTask = [[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        
+    
         NSDictionary *mainJsonDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
         NSDictionary *trackDictionary = [mainJsonDictionary objectForKey:@"tracks"];
         NSArray *trackDetails = [trackDictionary objectForKey:@"data"];
@@ -38,9 +38,9 @@
         {
             NSString *trackTitle = [track objectForKey:@"title"];
             int duration = [[track valueForKey:@"duration"] intValue];
-            NSString *trackURL = [track objectForKey:@"preview"];
+            NSString *trackUrl = [track objectForKey:@"preview"];
             
-            Track *newTrack = [[Track alloc] initWith:trackTitle duration:duration andTrackUrl:trackURL];
+            Track *newTrack = [[Track alloc] initWith:trackTitle duration:duration andTrackUrl:trackUrl];
             [self.tracks addObject:newTrack];
         }
         
