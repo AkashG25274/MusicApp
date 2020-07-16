@@ -8,9 +8,24 @@
 
 #import "WebRequestHandler.h"
 #import "../Model Classes/Track.h"
+#import "../Model Classes/Album.h"
 #import "../Constants.h"
 
 @implementation WebRequestHandler
+
++ (id)sharedHandler
+{
+    static WebRequestHandler *sharedHandler = nil;
+    @synchronized (self) {
+        
+        if(sharedHandler == nil)
+        {
+            sharedHandler = [[WebRequestHandler alloc]init];
+        }
+    }
+    
+    return sharedHandler;
+}
 
 - (id)init
 {
@@ -20,6 +35,7 @@
     {
         self.sourceUrl = sourceUrl;
         self.tracks = [[NSMutableArray alloc] init];
+        self.albums = [[NSMutableArray alloc] init];
     }
     
     return self;
@@ -32,17 +48,17 @@
     NSURLSessionDataTask *downloadTask = [[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData * _Nullable jsonData, NSURLResponse * _Nullable response, NSError * _Nullable error) {
     
         NSDictionary *mainJsonDictionary = [NSJSONSerialization JSONObjectWithData:jsonData options:kNilOptions error:&error];
-        NSDictionary *trackDictionary = [mainJsonDictionary objectForKey:track];
+        NSDictionary *trackDictionary = [mainJsonDictionary objectForKey:tracks];
         NSArray *trackDetails = [trackDictionary objectForKey:data];
         
         for(NSDictionary *track in trackDetails)
         {
             Track *newTrack = [[Track alloc] init];
-            newTrack.trackId = [[track objectForKey:trackId] longValue];
+            newTrack.trackId = [[track objectForKey:idString] longValue];
             newTrack.title = [track objectForKey:title];
             newTrack.titleShort = [track objectForKey:titleShort];
             newTrack.titleVersion = [track objectForKey:titleVersion];
-            newTrack.linkUrl = [track objectForKey:linkUrl];
+            newTrack.trackInfoUrl = [track objectForKey:linkUrl];
             newTrack.duration = [[track valueForKey:duration] intValue];
             newTrack.rank = [[track valueForKey:rank] intValue];
             newTrack.explicitLyrics = [[track objectForKey:explicitLyrics] boolValue];
@@ -60,6 +76,56 @@
     }];
     
     [downloadTask resume];
+}
+
+- (void)getAlbums:(void (^) (NSArray *))completionBlock
+{
+    NSURL *url = [NSURL URLWithString:self.sourceUrl];
+    
+    NSURLSessionDataTask *downloadTask = [[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData * _Nullable jsonData, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+        NSDictionary *mainJsonDictionary = [NSJSONSerialization JSONObjectWithData:jsonData options:kNilOptions error:&error];
+        NSDictionary *albumDictionary = [mainJsonDictionary objectForKey:albums];
+        NSArray *albumDetails = [albumDictionary objectForKey:data];
+        
+        for(NSDictionary *album in albumDetails)
+        {
+            Album *newAlbum = [[Album alloc] init];
+            newAlbum.albumId = [[album objectForKey:idString] longValue];
+            newAlbum.title = [album objectForKey:title];
+            newAlbum.albumInfoUrl = [album objectForKey:linkUrl];
+            newAlbum.coverImageUrl = [album objectForKey:cover];
+            newAlbum.coverSmallUrl = [album objectForKey:coverSmall];
+            newAlbum.coverMediumUrl = [album objectForKey:coverMedium];
+            newAlbum.coverBigUrl = [album objectForKey:coverBig];
+            newAlbum.coverXlUrl = [album objectForKey:coverXl];
+            newAlbum.recordType = [album objectForKey:recordType];
+            newAlbum.trackListUrl = [album objectForKey:trackList];
+            newAlbum.explicitLyrics = [[album objectForKey:explicitLyrics] boolValue];
+            newAlbum.position = [[album valueForKey:position] intValue];
+            newAlbum.type = [album objectForKey:type];
+            
+            [self.albums addObject:newAlbum];
+        }
+        
+        completionBlock(self.albums);
+        
+    }];
+    
+    [downloadTask resume];
+}
+
+- (void)downloadImageFrom:(NSString *)imageUrl completionBlock:(void (^)(UIImage * _Nonnull))completionBlock
+{
+    NSURL *url = [NSURL URLWithString:imageUrl];
+    NSURLSessionDataTask *imageDownloadTask = [[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+       
+        UIImage *image = [UIImage imageWithData:data];
+        
+        completionBlock(image);
+    }];
+    
+    [imageDownloadTask resume];
 }
 
 @end

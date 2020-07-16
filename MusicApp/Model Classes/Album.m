@@ -10,17 +10,17 @@
 
 @implementation Album
 
-- (id)initWith:(NSString *)title imageUrl:(NSString *)imageUrl andTrackList:(NSMutableArray *)trackList
-{
-    self = [super init];
-    
-    if(self)
-    {
-        self.title = title;
-        self.imageUrl = imageUrl;
-        self.trackList = trackList;
-    }
-    
-    return self;
-}
+//- (id)initWith:(NSString *)title imageUrl:(NSString *)imageUrl andTrackList:(NSMutableArray *)trackList
+//{
+//    self = [super init];
+//    
+//    if(self)
+//    {
+//        self.title = title;
+//        self.imageUrl = imageUrl;
+//        self.trackList = trackList;
+//    }
+//    
+//    return self;
+//}
 @end

@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (copy, nonatomic) NSString *title;
 @property (copy, nonatomic) NSString *titleShort;
 @property (copy, nonatomic) NSString *titleVersion;
-@property (copy, nonatomic) NSString *linkUrl;
+@property (copy, nonatomic) NSString *trackInfoUrl;
 @property (assign) int duration;
 @property (assign) int rank;
 @property (assign) BOOL explicitLyrics;

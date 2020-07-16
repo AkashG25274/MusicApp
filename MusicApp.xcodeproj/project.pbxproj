@@ -16,6 +16,7 @@
 		C13EF0AA24C02AA30024721C /* MainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = C13EF0A924C02AA30024721C /* MainTabBarController.m */; };
 		C13EF0AE24C02D380024721C /* TrackCustomTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C13EF0AD24C02D380024721C /* TrackCustomTableCell.m */; };
 		C13EF0B124C03D500024721C /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = C13EF0B024C03D500024721C /* Constants.m */; };
+		C1ACCFAA24C06814009BB242 /* AlbumCustomCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C1ACCFA924C06814009BB242 /* AlbumCustomCollectionViewCell.m */; };
 		C1FCAAA424BF04B6001986DD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C1FCAAA324BF04B6001986DD /* AppDelegate.m */; };
 		C1FCAAAC24BF04B8001986DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1FCAAAB24BF04B8001986DD /* Assets.xcassets */; };
 		C1FCAAAF24BF04B8001986DD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1FCAAAD24BF04B8001986DD /* LaunchScreen.storyboard */; };
@@ -45,6 +46,8 @@
 		C13EF0AD24C02D380024721C /* TrackCustomTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackCustomTableCell.m; sourceTree = "<group>"; };
 		C13EF0AF24C03D500024721C /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		C13EF0B024C03D500024721C /* Constants.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		C1ACCFA824C06814009BB242 /* AlbumCustomCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlbumCustomCollectionViewCell.h; sourceTree = "<group>"; };
+		C1ACCFA924C06814009BB242 /* AlbumCustomCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlbumCustomCollectionViewCell.m; sourceTree = "<group>"; };
 		C1FCAA9F24BF04B6001986DD /* MusicApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1FCAAA224BF04B6001986DD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C1FCAAA324BF04B6001986DD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -78,6 +81,8 @@
 			children = (
 				C13EF0AC24C02D380024721C /* TrackCustomTableCell.h */,
 				C13EF0AD24C02D380024721C /* TrackCustomTableCell.m */,
+				C1ACCFA824C06814009BB242 /* AlbumCustomCollectionViewCell.h */,
+				C1ACCFA924C06814009BB242 /* AlbumCustomCollectionViewCell.m */,
 			);
 			path = CustomUI;
 			sourceTree = "<group>";
@@ -250,6 +255,7 @@
 				C13EF0AA24C02AA30024721C /* MainTabBarController.m in Sources */,
 				C101D04B24BF2FE200781F10 /* Album.m in Sources */,
 				C1FCAACA24BF1AB0001986DD /* PlaylistsTabViewController.m in Sources */,
+				C1ACCFAA24C06814009BB242 /* AlbumCustomCollectionViewCell.m in Sources */,
 				C1FCAAC724BF1A91001986DD /* ArtistsTabViewController.m in Sources */,
 				C101D04E24BF2FF400781F10 /* Playlist.m in Sources */,
 			);

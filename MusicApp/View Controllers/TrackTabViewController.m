@@ -49,7 +49,7 @@
 
 - (void)setUpDataSource
 {
-    WebRequestHandler *requestHandler = [[WebRequestHandler alloc] init];
+    WebRequestHandler *requestHandler = [WebRequestHandler sharedHandler];
     [requestHandler getTracks:^(NSArray * _Nonnull tracks) {
         
         self.trackList = tracks;
