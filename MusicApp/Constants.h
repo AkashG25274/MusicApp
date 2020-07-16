@@ -18,6 +18,17 @@ extern NSString * const data;
 extern NSString * const title;
 extern NSString * const duration;
 extern NSString * const preview;
+extern NSString * const trackId;
+extern NSString * const titleShort;
+extern NSString * const titleVersion;
+extern NSString * const linkUrl;
+extern NSString * const rank;
+extern NSString * const explicitLyrics;
+extern NSString * const explicitContentLyrics;
+extern NSString * const explicitContentCover;
+extern NSString * const position;
+extern NSString * const type;
+
 extern NSString * const titleLabel;
 extern NSString * const artistNameLabel;
 extern NSString * const superView;

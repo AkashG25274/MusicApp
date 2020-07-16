@@ -10,17 +10,18 @@
 
 @implementation Track
 
-- (id)initWith:(NSString *)title duration:(int)duration andTrackUrl:(NSString *)trackUrl
-{
-    self = [super init];
-    
-    if(self)
-    {
-        self.title = title;
-        self.duration = duration;
-        self.trackUrl = trackUrl;
-    }
-    
-    return self;
-}
+//- (id)initWith:(NSString *)title duration:(int)duration andTrackUrl:(NSString *)trackUrl
+//{
+//    self = [super init];
+//
+//    if(self)
+//    {
+//        self.title = title;
+//        self.duration = duration;
+//        self.trackUrl = trackUrl;
+//    }
+//
+//    return self;
+//}
+
 @end

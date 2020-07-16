@@ -38,9 +38,19 @@
         for(NSDictionary *track in trackDetails)
         {
             Track *newTrack = [[Track alloc] init];
+            newTrack.trackId = [[track objectForKey:trackId] longValue];
             newTrack.title = [track objectForKey:title];
+            newTrack.titleShort = [track objectForKey:titleShort];
+            newTrack.titleVersion = [track objectForKey:titleVersion];
+            newTrack.linkUrl = [track objectForKey:linkUrl];
             newTrack.duration = [[track valueForKey:duration] intValue];
+            newTrack.rank = [[track valueForKey:rank] intValue];
+            newTrack.explicitLyrics = [[track objectForKey:explicitLyrics] boolValue];
+            newTrack.explicitContentLyrics = [[track objectForKey:explicitContentLyrics] intValue];;
+            newTrack.explicitContentCover = [[track objectForKey:explicitContentCover] intValue];;
             newTrack.trackUrl = [track objectForKey:preview];
+            newTrack.position = [[track valueForKey:position] intValue];
+            newTrack.type = [track objectForKey:type];
             
             [self.tracks addObject:newTrack];
         }
