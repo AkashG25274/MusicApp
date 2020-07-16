@@ -7,14 +7,15 @@
 //
 
 #import "TrackTabViewController.h"
-#import "TrackCustomTableCell.h"
+#import "./CustomUI/TrackCustomTableCell.h"
 #import "../Network Controllers/WebRequestHandler.h"
 #import "../Model Classes/Track.h"
+#import "../Constants.h"
 
 @interface TrackTabViewController ()
 
 @property (strong, nonatomic) UITableView *tableView;
-@property (strong, nonatomic) NSMutableArray *trackList;
+@property (strong, nonatomic) NSArray *trackList;
 
 @end
 
@@ -23,21 +24,33 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
-    self.tableView.rowHeight = 80.0f;
+    
+    self.tableView = [[UITableView alloc] init];
+    [self.tableView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    self.tableView.rowHeight = 70;
     [self.view addSubview:self.tableView];
+    [self setUpConstraints];
     self.tableView.backgroundColor = [UIColor whiteColor];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
-    self.trackList = [[NSMutableArray alloc] init];
+    self.trackList = [[NSArray alloc] init];
     [self setUpDataSource];
+}
+
+- (void)setUpConstraints
+{
+    NSDictionary *viewsDictionary = @{superView:self.view, tableView:self.tableView};
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[tableView(==superView)]|" options:0 metrics:nil views:viewsDictionary]];
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[tableView(==superView)]|" options:0 metrics:nil views:viewsDictionary]];
 }
 
 - (void)setUpDataSource
 {
     WebRequestHandler *requestHandler = [[WebRequestHandler alloc] init];
-    [requestHandler getTracks:^(NSMutableArray * _Nonnull tracks) {
+    [requestHandler getTracks:^(NSArray * _Nonnull tracks) {
         
         self.trackList = tracks;
         
@@ -58,11 +71,11 @@
 {
     Track *currentTrack = self.trackList[indexPath.row];
     
-    TrackCustomTableCell *cell = (TrackCustomTableCell *)[self.tableView dequeueReusableCellWithIdentifier:@"TrackCell"];
+    TrackCustomTableCell *cell = (TrackCustomTableCell *)[self.tableView dequeueReusableCellWithIdentifier:trackCellIdentifier];
     
     if(cell == nil)
     {
-        cell = [[TrackCustomTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"TrackCell"];
+        cell = [[TrackCustomTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:trackCellIdentifier];
     }
     
     cell.titleLabel.text = currentTrack.title;

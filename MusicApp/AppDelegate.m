@@ -7,10 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "View Controllers/TrackTabViewController.h"
-#import "View Controllers/AlbumsTabViewController.h"
-#import "View Controllers/ArtistsTabViewController.h"
-#import "View Controllers/PlaylistsTabViewController.h"
+#import "View Controllers/MainTabBarController.h"
 
 @interface AppDelegate ()
 
@@ -23,29 +20,7 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    TrackTabViewController *trackTabViewController = [[TrackTabViewController alloc] init];
-    UINavigationController *trackTabNavigationController = [[UINavigationController alloc] initWithRootViewController:trackTabViewController];
-    trackTabNavigationController.tabBarItem.title = @"Tracks";
-    [trackTabNavigationController.tabBarItem setTitleTextAttributes:@{NSFontAttributeName: [UIFont boldSystemFontOfSize:15.0], NSForegroundColorAttributeName: [UIColor blueColor]} forState:UIControlStateNormal];
-    
-    AlbumsTabViewController *albumsTabViewController = [[AlbumsTabViewController alloc] init];
-    UINavigationController *albumsTabNavigationController = [[UINavigationController alloc] initWithRootViewController:albumsTabViewController];
-    albumsTabNavigationController.tabBarItem.title = @"Albums";
-    [albumsTabNavigationController.tabBarItem setTitleTextAttributes:@{NSFontAttributeName: [UIFont boldSystemFontOfSize:15.0], NSForegroundColorAttributeName: [UIColor blueColor]} forState:UIControlStateNormal];
-    
-    ArtistsTabViewController *artistsTabViewController = [[ArtistsTabViewController alloc] init];
-    UINavigationController *artistsTabNavigationController = [[UINavigationController alloc] initWithRootViewController:artistsTabViewController];
-    artistsTabNavigationController.tabBarItem.title = @"Artists";
-    [artistsTabNavigationController.tabBarItem setTitleTextAttributes:@{NSFontAttributeName: [UIFont boldSystemFontOfSize:15.0], NSForegroundColorAttributeName: [UIColor blueColor]} forState:UIControlStateNormal];
-    
-    PlaylistsTabViewController *playlistsTabViewController = [[PlaylistsTabViewController alloc] init];
-    UINavigationController *playlistsTabNavigationController = [[UINavigationController alloc] initWithRootViewController:playlistsTabViewController];
-    playlistsTabNavigationController.tabBarItem.title = @"Playlists";
-    [playlistsTabNavigationController.tabBarItem setTitleTextAttributes:@{NSFontAttributeName: [UIFont boldSystemFontOfSize:15.0], NSForegroundColorAttributeName: [UIColor blueColor]} forState:UIControlStateNormal];
-    
-    UITabBarController *mainTabBarController = [[UITabBarController alloc] init];
-    mainTabBarController.viewControllers = @[trackTabNavigationController, albumsTabNavigationController, artistsTabNavigationController, playlistsTabNavigationController];
-    
+    MainTabBarController *mainTabBarController = [[MainTabBarController alloc] init];
     [self.window setRootViewController:mainTabBarController];
     [self.window makeKeyAndVisible];
     

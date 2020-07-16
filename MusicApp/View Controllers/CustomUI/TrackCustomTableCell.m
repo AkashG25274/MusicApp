@@ -7,6 +7,7 @@
 //
 
 #import "TrackCustomTableCell.h"
+#import "../../Constants.h"
 
 @implementation TrackCustomTableCell
 
@@ -26,7 +27,7 @@
         [self.artistNameLabel setFont:[UIFont systemFontOfSize:15.0]];
         [self.contentView addSubview:self.artistNameLabel];
         
-        NSDictionary *viewsDictionary = @{@"titleLabel":self.titleLabel, @"artistNameLabel":self.artistNameLabel};
+        NSDictionary *viewsDictionary = @{titleLabel:self.titleLabel, artistNameLabel:self.artistNameLabel};
         
         [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[titleLabel]-10-[artistNameLabel]" options:0 metrics:nil views:viewsDictionary]];
         

@@ -10,6 +10,8 @@
 
 @interface AlbumsTabViewController ()
 
+@property (strong, nonatomic) UICollectionView *collectionView;
+
 @end
 
 @implementation AlbumsTabViewController
@@ -17,6 +19,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+    self.collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
 }
 
 @end
