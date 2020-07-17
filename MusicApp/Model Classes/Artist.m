@@ -10,17 +10,17 @@
 
 @implementation Artist
 
-- (id)initWith:(NSString *)name andImageUrl:(NSString *)imageUrl
-{
-    self = [super init];
-    
-    if(self)
-    {
-        self.name = name;
-        self.imageUrl = imageUrl;
-    }
-    
-    return self;
-}
+//- (id)initWith:(NSString *)name andImageUrl:(NSString *)imageUrl
+//{
+//    self = [super init];
+//    
+//    if(self)
+//    {
+//        self.name = name;
+//        self.imageUrl = imageUrl;
+//    }
+//    
+//    return self;
+//}
 
 @end

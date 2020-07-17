@@ -13,8 +13,11 @@ NS_ASSUME_NONNULL_BEGIN
 @interface Constants : NSObject
 
 extern NSString * const sourceUrl;
+
 extern NSString * const tracks;
 extern NSString * const albums;
+extern NSString * const artists;
+
 extern NSString * const data;
 extern NSString * const title;
 extern NSString * const duration;
@@ -36,6 +39,13 @@ extern NSString * const coverBig;
 extern NSString * const coverXl;
 extern NSString * const recordType;
 extern NSString * const trackList;
+extern NSString * const radio;
+extern NSString * const name;
+extern NSString * const picture;
+extern NSString * const pictureSmall;
+extern NSString * const pictureMedium;
+extern NSString * const pictureBig;
+extern NSString * const pictureXl;
 
 extern NSString * const titleLabel;
 extern NSString * const artistNameLabel;
@@ -48,6 +58,7 @@ extern NSString * const collectionView;
 
 extern NSString * const trackCellIdentifier;
 extern NSString * const albumCellIdentifier;
+extern NSString * const artistCellIdentifier;
 
 extern NSString * const trackTabBarTitle;
 extern NSString * const albumTabBarTitle;
@@ -55,6 +66,7 @@ extern NSString * const artistTabBarTitle;
 extern NSString * const playlistTabBarTitle;
 
 extern NSString * const albumDefaultImage;
+extern NSString * const artistDefaultImage;
 
 @end
 

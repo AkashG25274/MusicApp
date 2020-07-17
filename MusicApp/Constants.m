@@ -14,6 +14,8 @@ NSString * const sourceUrl = @"http://api.deezer.com/editorial/0/charts";
 
 NSString * const tracks = @"tracks";
 NSString * const albums = @"albums";
+NSString * const artists = @"artists";
+
 NSString * const data = @"data";
 NSString * const title = @"title";
 NSString * const duration = @"duration";
@@ -35,6 +37,13 @@ NSString * const coverBig = @"cover_big";
 NSString * const coverXl = @"cover_xl";
 NSString * const recordType = @"record_type";
 NSString * const trackList = @"tracklist";
+NSString * const radio = @"radio";
+NSString * const name = @"name";
+NSString * const picture = @"picture";
+NSString * const pictureSmall = @"picture_small";
+NSString * const pictureMedium = @"picture_medium";
+NSString * const pictureBig = @"picture_big";
+NSString * const pictureXl = @"picture_xl";
 
 NSString * const titleLabel = @"titleLabel";
 NSString * const artistNameLabel = @"artistNameLabel";
@@ -47,6 +56,7 @@ NSString * const collectionView = @"collectionView";
 
 NSString * const trackCellIdentifier = @"TrackCell";
 NSString * const albumCellIdentifier = @"AlbumCell";
+NSString * const artistCellIdentifier = @"ArtistCell";
 
 NSString * const trackTabBarTitle = @"Tracks";
 NSString * const albumTabBarTitle = @"Albums";
@@ -54,5 +64,6 @@ NSString * const artistTabBarTitle = @"Artists";
 NSString * const playlistTabBarTitle = @"Playlists";
 
 NSString * const albumDefaultImage = @"download";
+NSString * const artistDefaultImage = @"profile";
 
 @end

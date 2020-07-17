@@ -12,10 +12,20 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Artist : NSObject
 
+@property (assign) long int artistId;
 @property (copy, nonatomic) NSString *name;
-@property (copy, nonatomic) NSString *imageUrl;
+@property (copy, nonatomic) NSString *artistInfoUrl;
+@property (copy, nonatomic) NSString *pictureUrl;
+@property (copy, nonatomic) NSString *smallPictureUrl;
+@property (copy, nonatomic) NSString *mediumPictureUrl;
+@property (copy, nonatomic) NSString *bigPictureUrl;
+@property (copy, nonatomic) NSString *xlPictureUrl;
+@property (assign) BOOL radio;
+@property (strong, nonatomic) NSString *trackListUrl;
+@property (assign) int position;
+@property (copy, nonatomic) NSString *type;
 
-- (id)initWith:(NSString *)name andImageUrl:(NSString *)imageUrl;
+//- (id)initWith:(NSString *)name andImageUrl:(NSString *)imageUrl;
 
 @end
 

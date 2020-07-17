@@ -9,6 +9,7 @@
 #import "WebRequestHandler.h"
 #import "../Model Classes/Track.h"
 #import "../Model Classes/Album.h"
+#import "../Model Classes/Artist.h"
 #import "../Constants.h"
 
 @implementation WebRequestHandler
@@ -36,6 +37,7 @@
         self.sourceUrl = sourceUrl;
         self.tracks = [[NSMutableArray alloc] init];
         self.albums = [[NSMutableArray alloc] init];
+        self.artists = [[NSMutableArray alloc] init];
     }
     
     return self;
@@ -109,6 +111,42 @@
         }
         
         completionBlock(self.albums);
+        
+    }];
+    
+    [downloadTask resume];
+}
+
+- (void)getArtists:(void (^) (NSArray *))completionBlock
+{
+    NSURL *url = [NSURL URLWithString:self.sourceUrl];
+    
+    NSURLSessionDataTask *downloadTask = [[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData * _Nullable jsonData, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+        NSDictionary *mainJsonDictionary = [NSJSONSerialization JSONObjectWithData:jsonData options:kNilOptions error:&error];
+        NSDictionary *artistDictionary = [mainJsonDictionary objectForKey:artists];
+        NSArray *artistDetails = [artistDictionary objectForKey:data];
+        
+        for(NSDictionary *artist in artistDetails)
+        {
+            Artist *newArtist = [[Artist alloc] init];
+            newArtist.artistId = [[artist objectForKey:idString] longValue];
+            newArtist.name = [artist objectForKey:name];
+            newArtist.artistInfoUrl = [artist objectForKey:linkUrl];
+            newArtist.pictureUrl = [artist objectForKey:picture];
+            newArtist.smallPictureUrl = [artist objectForKey:pictureSmall];
+            newArtist.mediumPictureUrl = [artist objectForKey:pictureMedium];
+            newArtist.bigPictureUrl = [artist objectForKey:pictureBig];
+            newArtist.xlPictureUrl = [artist objectForKey:pictureXl];
+            newArtist.radio = [[artist objectForKey:radio] boolValue];
+            newArtist.trackListUrl = [artist objectForKey:trackList];
+            newArtist.position = [[artist valueForKey:position] intValue];
+            newArtist.type = [artist objectForKey:type];
+            
+            [self.artists addObject:newArtist];
+        }
+        
+        completionBlock(self.artists);
         
     }];
     
