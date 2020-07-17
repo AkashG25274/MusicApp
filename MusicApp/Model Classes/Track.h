@@ -23,7 +23,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (assign) int explicitContentLyrics;
 @property (assign) int explicitContentCover;
 @property (copy, nonatomic) NSString *trackUrl;
-@property (assign) int position;
 @property (copy, nonatomic) NSString *type;
 
 //- (id)initWith:(NSString *)title duration:(int)duration andTrackUrl:(NSString *)trackUrl;

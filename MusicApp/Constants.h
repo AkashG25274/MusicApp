@@ -12,12 +12,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Constants : NSObject
 
-extern NSString * const sourceUrl;
+extern NSString * const baseUrl;
 
 extern NSString * const tracks;
 extern NSString * const albums;
 extern NSString * const artists;
 extern NSString * const playlists;
+
+extern NSString * const artist;
 
 extern NSString * const data;
 extern NSString * const title;

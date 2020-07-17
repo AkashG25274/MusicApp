@@ -13,14 +13,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface WebRequestHandler : NSObject
 
-@property (copy, nonatomic) NSString *sourceUrl;
-@property (strong, nonatomic) NSMutableArray *tracks;
-@property (strong, nonatomic) NSMutableArray *albums;
-@property (strong, nonatomic) NSMutableArray *artists;
-@property (strong, nonatomic) NSMutableArray *playlists;
+@property (copy, nonatomic) NSString *baseUrl;
 
 + (id)sharedHandler;
-- (void)getTracks:(void(^)(NSArray *))completionBlock;
+- (void)getTracksFrom:(NSString *)sourceUrl andCompletionHandler:(void(^)(NSArray *))completionBlock;
 - (void)getAlbums:(void(^)(NSArray *))completionBlock;
 - (void)getArtists:(void(^)(NSArray *))completionBlock;
 - (void)getPlaylists:(void(^)(NSArray *))completionBlock;

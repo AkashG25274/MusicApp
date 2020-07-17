@@ -1,25 +1,34 @@
 //
-//  TrackTabViewController.m
+//  AlbumDetailViewController.m
 //  MusicApp
 //
-//  Created by mmt on 15/07/20.
+//  Created by mmt on 17/07/20.
 //  Copyright © 2020 mmt. All rights reserved.
 //
 
-#import "TrackTabViewController.h"
-#import "./CustomUI/TrackCustomTableCell.h"
-#import "../Network Controllers/WebRequestHandler.h"
-#import "../Model Classes/Track.h"
-#import "../Constants.h"
+#import "AlbumDetailViewController.h"
+#import "../../Network Controllers/WebRequestHandler.h"
+#import "../../Model Classes/Track.h"
+#import "../../Constants.h"
 
-@interface TrackTabViewController ()
+@interface AlbumDetailViewController ()
 
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) NSArray *trackList;
 
 @end
 
-@implementation TrackTabViewController
+@implementation AlbumDetailViewController
+
+- (id)init
+{
+    self = [super init];
+    if (self)
+    {
+        self.album = [[Album alloc] init];
+    }
+    return self;
+}
 
 - (void)viewDidLoad
 {
@@ -31,6 +40,7 @@
     [self.view addSubview:self.tableView];
     [self setUpConstraints];
     self.tableView.backgroundColor = [UIColor whiteColor];
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:trackCellIdentifier];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
@@ -50,7 +60,7 @@
 - (void)setUpDataSource
 {
     WebRequestHandler *requestHandler = [WebRequestHandler sharedHandler];
-    [requestHandler getTracksFrom:baseUrl andCompletionHandler:^(NSArray * _Nonnull tracks) {
+    [requestHandler getTracksFrom:self.album.trackListUrl andCompletionHandler:^(NSArray * _Nonnull tracks) {
         
         self.trackList = tracks;
         
@@ -71,17 +81,12 @@
 {
     Track *currentTrack = self.trackList[indexPath.row];
     
-    TrackCustomTableCell *cell = (TrackCustomTableCell *)[self.tableView dequeueReusableCellWithIdentifier:trackCellIdentifier];
-    
-    if(cell == nil)
-    {
-        cell = [[TrackCustomTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:trackCellIdentifier];
-    }
-    
-    cell.titleLabel.text = currentTrack.title;
-    cell.artistNameLabel.text = @"Artist";
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:trackCellIdentifier forIndexPath:indexPath];
+    cell.textLabel.text = currentTrack.title;
     
     return cell;
 }
+
+
 
 @end

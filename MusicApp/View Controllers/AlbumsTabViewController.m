@@ -10,6 +10,7 @@
 #import "./CustomUI/AlbumCustomCollectionViewCell.h"
 #import "../Model Classes/Album.h"
 #import "../Network Controllers/WebRequestHandler.h"
+#import "./DetailViewControllers/AlbumDetailViewController.h"
 #import "../Constants.h"
 
 @interface AlbumsTabViewController ()
@@ -93,6 +94,15 @@
     }];
     
     return albumCell;
+}
+
+#pragma mark <UICollectionViewDelegate>
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    AlbumDetailViewController *albumDetailViewController = [[AlbumDetailViewController alloc] init];
+    albumDetailViewController.album = self.albums[indexPath.row];
+    [self.navigationController pushViewController:albumDetailViewController animated:YES];
 }
 
 #pragma mark <UICollectionViewFlowLayoutDelegate>

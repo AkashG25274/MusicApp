@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Artist.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -25,6 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (assign) BOOL explicitLyrics;
 @property (assign) int position;
 @property (copy, nonatomic) NSString *type;
+@property (strong, nonatomic) Artist *artist;
 
 //- (id)initWith:(NSString *)title imageUrl:(NSString *)imageUrl andTrackList:(NSMutableArray *)trackList;
 

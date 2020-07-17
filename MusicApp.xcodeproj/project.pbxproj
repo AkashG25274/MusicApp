@@ -17,6 +17,7 @@
 		C13EF0AE24C02D380024721C /* TrackCustomTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C13EF0AD24C02D380024721C /* TrackCustomTableCell.m */; };
 		C13EF0B124C03D500024721C /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = C13EF0B024C03D500024721C /* Constants.m */; };
 		C181AE5A24C1708C009C59A2 /* PlaylistCustomCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C181AE5924C1708C009C59A2 /* PlaylistCustomCollectionViewCell.m */; };
+		C181AE5E24C17FEF009C59A2 /* AlbumDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C181AE5D24C17FEF009C59A2 /* AlbumDetailViewController.m */; };
 		C1ACCFAA24C06814009BB242 /* AlbumCustomCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C1ACCFA924C06814009BB242 /* AlbumCustomCollectionViewCell.m */; };
 		C1FCAAA424BF04B6001986DD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C1FCAAA324BF04B6001986DD /* AppDelegate.m */; };
 		C1FCAAAC24BF04B8001986DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1FCAAAB24BF04B8001986DD /* Assets.xcassets */; };
@@ -49,6 +50,8 @@
 		C13EF0B024C03D500024721C /* Constants.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		C181AE5824C1708C009C59A2 /* PlaylistCustomCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlaylistCustomCollectionViewCell.h; sourceTree = "<group>"; };
 		C181AE5924C1708C009C59A2 /* PlaylistCustomCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlaylistCustomCollectionViewCell.m; sourceTree = "<group>"; };
+		C181AE5C24C17FEF009C59A2 /* AlbumDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlbumDetailViewController.h; sourceTree = "<group>"; };
+		C181AE5D24C17FEF009C59A2 /* AlbumDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlbumDetailViewController.m; sourceTree = "<group>"; };
 		C1ACCFA824C06814009BB242 /* AlbumCustomCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlbumCustomCollectionViewCell.h; sourceTree = "<group>"; };
 		C1ACCFA924C06814009BB242 /* AlbumCustomCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlbumCustomCollectionViewCell.m; sourceTree = "<group>"; };
 		C1FCAA9F24BF04B6001986DD /* MusicApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -92,6 +95,15 @@
 			path = CustomUI;
 			sourceTree = "<group>";
 		};
+		C181AE5B24C17FDC009C59A2 /* DetailViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				C181AE5C24C17FEF009C59A2 /* AlbumDetailViewController.h */,
+				C181AE5D24C17FEF009C59A2 /* AlbumDetailViewController.m */,
+			);
+			path = DetailViewControllers;
+			sourceTree = "<group>";
+		};
 		C1FCAA9624BF04B5001986DD = {
 			isa = PBXGroup;
 			children = (
@@ -130,6 +142,7 @@
 		C1FCAAB824BF05B8001986DD /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C181AE5B24C17FDC009C59A2 /* DetailViewControllers */,
 				C13EF0AB24C02D380024721C /* CustomUI */,
 				C1FCAABF24BF1A2F001986DD /* TrackTabViewController.h */,
 				C1FCAAC024BF1A2F001986DD /* TrackTabViewController.m */,
@@ -264,6 +277,7 @@
 				C1ACCFAA24C06814009BB242 /* AlbumCustomCollectionViewCell.m in Sources */,
 				C1FCAAC724BF1A91001986DD /* ArtistsTabViewController.m in Sources */,
 				C101D04E24BF2FF400781F10 /* Playlist.m in Sources */,
+				C181AE5E24C17FEF009C59A2 /* AlbumDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

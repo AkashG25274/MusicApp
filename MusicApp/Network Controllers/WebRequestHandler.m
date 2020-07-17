@@ -35,25 +35,31 @@
     
     if (self)
     {
-        self.sourceUrl = sourceUrl;
-        self.tracks = [[NSMutableArray alloc] init];
-        self.albums = [[NSMutableArray alloc] init];
-        self.artists = [[NSMutableArray alloc] init];
-        self.playlists = [[NSMutableArray alloc] init];
+        self.baseUrl = baseUrl;
     }
     
     return self;
 }
 
-- (void)getTracks:(void (^) (NSArray *))completionBlock
+- (void)getTracksFrom:(NSString *)sourceUrl andCompletionHandler:(void (^)(NSArray * _Nonnull))completionBlock
 {
-    NSURL *url = [NSURL URLWithString:self.sourceUrl];
+    NSURL *url = [NSURL URLWithString:sourceUrl];
     
     NSURLSessionDataTask *downloadTask = [[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData * _Nullable jsonData, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-    
+        NSMutableArray *trackList = [[NSMutableArray alloc] init];
+        NSArray *trackDetails = [[NSArray alloc] init];
+        
         NSDictionary *mainJsonDictionary = [NSJSONSerialization JSONObjectWithData:jsonData options:kNilOptions error:&error];
-        NSDictionary *trackDictionary = [mainJsonDictionary objectForKey:tracks];
-        NSArray *trackDetails = [trackDictionary objectForKey:data];
+        
+        if([sourceUrl isEqualToString:self.baseUrl])
+        {
+            NSDictionary *trackDictionary = [mainJsonDictionary objectForKey:tracks];
+            trackDetails = [trackDictionary objectForKey:data];
+        }
+        else
+        {
+            trackDetails = [mainJsonDictionary objectForKey:data];
+        }
         
         for(NSDictionary *track in trackDetails)
         {
@@ -69,13 +75,12 @@
             newTrack.explicitContentLyrics = [[track objectForKey:explicitContentLyrics] intValue];;
             newTrack.explicitContentCover = [[track objectForKey:explicitContentCover] intValue];;
             newTrack.trackUrl = [track objectForKey:preview];
-            newTrack.position = [[track valueForKey:position] intValue];
             newTrack.type = [track objectForKey:type];
             
-            [self.tracks addObject:newTrack];
+            [trackList addObject:newTrack];
         }
         
-        completionBlock(self.tracks);
+        completionBlock(trackList);
         
     }];
     
@@ -84,10 +89,11 @@
 
 - (void)getAlbums:(void (^) (NSArray *))completionBlock
 {
-    NSURL *url = [NSURL URLWithString:self.sourceUrl];
+    NSURL *url = [NSURL URLWithString:self.baseUrl];
     
     NSURLSessionDataTask *downloadTask = [[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData * _Nullable jsonData, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         
+        NSMutableArray *albumList = [[NSMutableArray alloc] init];
         NSDictionary *mainJsonDictionary = [NSJSONSerialization JSONObjectWithData:jsonData options:kNilOptions error:&error];
         NSDictionary *albumDictionary = [mainJsonDictionary objectForKey:albums];
         NSArray *albumDetails = [albumDictionary objectForKey:data];
@@ -109,10 +115,15 @@
             newAlbum.position = [[album valueForKey:position] intValue];
             newAlbum.type = [album objectForKey:type];
             
-            [self.albums addObject:newAlbum];
+            NSDictionary *artistDetails = [album objectForKey:artist];
+            Artist *artistOfCurrentAlbum = [[Artist alloc] init];
+            artistOfCurrentAlbum = [self parseArtistDetails:artistDetails];
+            newAlbum.artist = artistOfCurrentAlbum;
+            
+            [albumList addObject:newAlbum];
         }
         
-        completionBlock(self.albums);
+        completionBlock(albumList);
         
     }];
     
@@ -121,9 +132,11 @@
 
 - (void)getArtists:(void (^) (NSArray *))completionBlock
 {
-    NSURL *url = [NSURL URLWithString:self.sourceUrl];
+    NSURL *url = [NSURL URLWithString:self.baseUrl];
     
     NSURLSessionDataTask *downloadTask = [[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData * _Nullable jsonData, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+        NSMutableArray *artistList = [[NSMutableArray alloc] init];
         
         NSDictionary *mainJsonDictionary = [NSJSONSerialization JSONObjectWithData:jsonData options:kNilOptions error:&error];
         NSDictionary *artistDictionary = [mainJsonDictionary objectForKey:artists];
@@ -132,23 +145,11 @@
         for(NSDictionary *artist in artistDetails)
         {
             Artist *newArtist = [[Artist alloc] init];
-            newArtist.artistId = [[artist objectForKey:idString] longValue];
-            newArtist.name = [artist objectForKey:name];
-            newArtist.artistInfoUrl = [artist objectForKey:linkUrl];
-            newArtist.pictureUrl = [artist objectForKey:picture];
-            newArtist.smallPictureUrl = [artist objectForKey:pictureSmall];
-            newArtist.mediumPictureUrl = [artist objectForKey:pictureMedium];
-            newArtist.bigPictureUrl = [artist objectForKey:pictureBig];
-            newArtist.xlPictureUrl = [artist objectForKey:pictureXl];
-            newArtist.radio = [[artist objectForKey:radio] boolValue];
-            newArtist.trackListUrl = [artist objectForKey:trackList];
-            newArtist.position = [[artist valueForKey:position] intValue];
-            newArtist.type = [artist objectForKey:type];
-            
-            [self.artists addObject:newArtist];
+            newArtist = [self parseArtistDetails:artist];
+            [artistList addObject:newArtist];
         }
         
-        completionBlock(self.artists);
+        completionBlock(artistList);
         
     }];
     
@@ -157,9 +158,11 @@
 
 - (void)getPlaylists:(void (^) (NSArray *))completionBlock
 {
-    NSURL *url = [NSURL URLWithString:self.sourceUrl];
+    NSURL *url = [NSURL URLWithString:self.baseUrl];
     
     NSURLSessionDataTask *downloadTask = [[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData * _Nullable jsonData, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+        NSMutableArray *listOfPlaylists = [[NSMutableArray alloc] init];
         
         NSDictionary *mainJsonDictionary = [NSJSONSerialization JSONObjectWithData:jsonData options:kNilOptions error:&error];
         NSDictionary *playlistDictionary = [mainJsonDictionary objectForKey:playlists];
@@ -183,14 +186,33 @@
             newPlaylist.creationDate = [playlist objectForKey:creationDate];
             newPlaylist.type = [playlist objectForKey:type];
             
-            [self.playlists addObject:newPlaylist];
+            [listOfPlaylists addObject:newPlaylist];
         }
         
-        completionBlock(self.playlists);
+        completionBlock(listOfPlaylists);
         
     }];
     
     [downloadTask resume];
+}
+
+- (Artist *)parseArtistDetails:(NSDictionary *)artist
+{
+    Artist *newArtist = [[Artist alloc] init];
+    newArtist.artistId = [[artist objectForKey:idString] longValue];
+    newArtist.name = [artist objectForKey:name];
+    newArtist.artistInfoUrl = [artist objectForKey:linkUrl];
+    newArtist.pictureUrl = [artist objectForKey:picture];
+    newArtist.smallPictureUrl = [artist objectForKey:pictureSmall];
+    newArtist.mediumPictureUrl = [artist objectForKey:pictureMedium];
+    newArtist.bigPictureUrl = [artist objectForKey:pictureBig];
+    newArtist.xlPictureUrl = [artist objectForKey:pictureXl];
+    newArtist.radio = [[artist objectForKey:radio] boolValue];
+    newArtist.trackListUrl = [artist objectForKey:trackList];
+    newArtist.position = [[artist valueForKey:position] intValue];
+    newArtist.type = [artist objectForKey:type];
+    
+    return newArtist;
 }
 
 - (void)downloadImageFrom:(NSString *)imageUrl completionBlock:(void (^)(UIImage * _Nonnull))completionBlock

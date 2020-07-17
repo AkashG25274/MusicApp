@@ -10,12 +10,14 @@
 
 @implementation Constants
 
-NSString * const sourceUrl = @"http://api.deezer.com/editorial/0/charts";
+NSString * const baseUrl = @"http://api.deezer.com/editorial/0/charts";
 
 NSString * const tracks = @"tracks";
 NSString * const albums = @"albums";
 NSString * const artists = @"artists";
 NSString * const playlists = @"playlists";
+
+NSString * const artist = @"artist";
 
 NSString * const data = @"data";
 NSString * const title = @"title";
