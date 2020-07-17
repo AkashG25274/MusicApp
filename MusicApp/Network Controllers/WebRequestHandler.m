@@ -29,18 +29,6 @@
     return sharedHandler;
 }
 
-- (id)init
-{
-    self = [super init];
-    
-    if (self)
-    {
-        self.baseUrl = baseUrl;
-    }
-    
-    return self;
-}
-
 - (void)getTracksFrom:(NSString *)sourceUrl andCompletionHandler:(void (^)(NSArray * _Nonnull))completionBlock
 {
     NSURL *url = [NSURL URLWithString:sourceUrl];
@@ -51,7 +39,7 @@
         
         NSDictionary *mainJsonDictionary = [NSJSONSerialization JSONObjectWithData:jsonData options:kNilOptions error:&error];
         
-        if([sourceUrl isEqualToString:self.baseUrl])
+        if([sourceUrl isEqualToString:baseUrl])
         {
             NSDictionary *trackDictionary = [mainJsonDictionary objectForKey:tracks];
             trackDetails = [trackDictionary objectForKey:data];
@@ -89,7 +77,7 @@
 
 - (void)getAlbums:(void (^) (NSArray *))completionBlock
 {
-    NSURL *url = [NSURL URLWithString:self.baseUrl];
+    NSURL *url = [NSURL URLWithString:baseUrl];
     
     NSURLSessionDataTask *downloadTask = [[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData * _Nullable jsonData, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         
@@ -132,7 +120,7 @@
 
 - (void)getArtists:(void (^) (NSArray *))completionBlock
 {
-    NSURL *url = [NSURL URLWithString:self.baseUrl];
+    NSURL *url = [NSURL URLWithString:baseUrl];
     
     NSURLSessionDataTask *downloadTask = [[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData * _Nullable jsonData, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         
@@ -158,7 +146,7 @@
 
 - (void)getPlaylists:(void (^) (NSArray *))completionBlock
 {
-    NSURL *url = [NSURL URLWithString:self.baseUrl];
+    NSURL *url = [NSURL URLWithString:baseUrl];
     
     NSURLSessionDataTask *downloadTask = [[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData * _Nullable jsonData, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         

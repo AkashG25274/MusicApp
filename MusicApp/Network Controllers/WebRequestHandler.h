@@ -13,8 +13,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface WebRequestHandler : NSObject
 
-@property (copy, nonatomic) NSString *baseUrl;
-
 + (id)sharedHandler;
 - (void)getTracksFrom:(NSString *)sourceUrl andCompletionHandler:(void(^)(NSArray *))completionBlock;
 - (void)getAlbums:(void(^)(NSArray *))completionBlock;

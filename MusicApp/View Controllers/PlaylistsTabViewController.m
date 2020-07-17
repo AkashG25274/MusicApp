@@ -10,6 +10,7 @@
 #import "./CustomUI/PlaylistCustomCollectionViewCell.h"
 #import "../Model Classes/Playlist.h"
 #import "../Network Controllers/WebRequestHandler.h"
+#import "./DetailViewControllers/PlaylistDetailViewController.h"
 #import "../Constants.h"
 
 @interface PlaylistsTabViewController ()
@@ -94,6 +95,15 @@
     }];
     
     return playlistCell;
+}
+
+#pragma mark <UICollectionViewDelegate>
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    PlaylistDetailViewController *playlistDetailViewController = [[PlaylistDetailViewController alloc] init];
+    playlistDetailViewController.playlist = self.playlists[indexPath.row];
+    [self.navigationController pushViewController:playlistDetailViewController animated:YES];
 }
 
 #pragma mark <UICollectionViewFlowLayoutDelegate>

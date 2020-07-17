@@ -1,31 +1,32 @@
 //
-//  AlbumDetailViewController.m
+//  PlaylistDetailViewController.m
 //  MusicApp
 //
 //  Created by mmt on 17/07/20.
 //  Copyright © 2020 mmt. All rights reserved.
 //
 
-#import "AlbumDetailViewController.h"
+#import "PlaylistDetailViewController.h"
 #import "../../Network Controllers/WebRequestHandler.h"
 #import "../../Model Classes/Track.h"
+#import "../CustomUI/PlaylistTrackCustomCell.h"
 #import "../../Constants.h"
 
-@interface AlbumDetailViewController ()
+@interface PlaylistDetailViewController ()
 
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) NSArray *trackList;
 
 @end
 
-@implementation AlbumDetailViewController
+@implementation PlaylistDetailViewController
 
 - (id)init
 {
     self = [super init];
     if (self)
     {
-        self.album = [[Album alloc] init];
+        self.playlist = [[Playlist alloc] init];
     }
     return self;
 }
@@ -40,7 +41,7 @@
     [self.view addSubview:self.tableView];
     [self setUpConstraints];
     self.tableView.backgroundColor = [UIColor whiteColor];
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:trackCellIdentifier];
+    [self.tableView registerClass:[PlaylistTrackCustomCell class] forCellReuseIdentifier:trackCellIdentifier];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
@@ -60,7 +61,7 @@
 - (void)setUpDataSource
 {
     WebRequestHandler *requestHandler = [WebRequestHandler sharedHandler];
-    [requestHandler getTracksFrom:self.album.trackListUrl andCompletionHandler:^(NSArray * _Nonnull tracks) {
+    [requestHandler getTracksFrom:self.playlist.trackListUrl andCompletionHandler:^(NSArray * _Nonnull tracks) {
         
         self.trackList = tracks;
         
@@ -81,10 +82,17 @@
 {
     Track *currentTrack = self.trackList[indexPath.row];
     
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:trackCellIdentifier forIndexPath:indexPath];
-    cell.textLabel.text = currentTrack.title;
+    PlaylistTrackCustomCell *cell = (PlaylistTrackCustomCell *)[self.tableView dequeueReusableCellWithIdentifier:trackCellIdentifier forIndexPath:indexPath];
+    
+    if(cell == nil)
+    {
+        cell = [[PlaylistTrackCustomCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:trackCellIdentifier];
+    }
+    
+    cell.titleLabel.text = currentTrack.title;
     
     return cell;
 }
+
 
 @end
