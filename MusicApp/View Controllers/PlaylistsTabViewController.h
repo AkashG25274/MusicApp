@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PlaylistsTabViewController : UIViewController
+@interface PlaylistsTabViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate>
 
 @end
 

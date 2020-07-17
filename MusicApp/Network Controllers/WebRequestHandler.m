@@ -10,6 +10,7 @@
 #import "../Model Classes/Track.h"
 #import "../Model Classes/Album.h"
 #import "../Model Classes/Artist.h"
+#import "../Model Classes/Playlist.h"
 #import "../Constants.h"
 
 @implementation WebRequestHandler
@@ -38,6 +39,7 @@
         self.tracks = [[NSMutableArray alloc] init];
         self.albums = [[NSMutableArray alloc] init];
         self.artists = [[NSMutableArray alloc] init];
+        self.playlists = [[NSMutableArray alloc] init];
     }
     
     return self;
@@ -147,6 +149,44 @@
         }
         
         completionBlock(self.artists);
+        
+    }];
+    
+    [downloadTask resume];
+}
+
+- (void)getPlaylists:(void (^) (NSArray *))completionBlock
+{
+    NSURL *url = [NSURL URLWithString:self.sourceUrl];
+    
+    NSURLSessionDataTask *downloadTask = [[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData * _Nullable jsonData, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+        NSDictionary *mainJsonDictionary = [NSJSONSerialization JSONObjectWithData:jsonData options:kNilOptions error:&error];
+        NSDictionary *playlistDictionary = [mainJsonDictionary objectForKey:playlists];
+        NSArray *playlistDetails = [playlistDictionary objectForKey:data];
+        
+        for(NSDictionary *playlist in playlistDetails)
+        {
+            Playlist *newPlaylist = [[Playlist alloc] init];
+            newPlaylist.playlistId = [[playlist objectForKey:idString] longValue];
+            newPlaylist.title = [playlist objectForKey:title];
+            newPlaylist.publicPlaylist = [[playlist objectForKey:publicString] boolValue];
+            newPlaylist.totalTracks = [[playlist valueForKey:nbTracks] intValue];
+            newPlaylist.playlistInfoUrl = [playlist objectForKey:linkUrl];
+            newPlaylist.pictureUrl = [playlist objectForKey:picture];
+            newPlaylist.smallPictureUrl = [playlist objectForKey:pictureSmall];
+            newPlaylist.mediumPictureUrl = [playlist objectForKey:pictureMedium];
+            newPlaylist.bigPictureUrl = [playlist objectForKey:pictureBig];
+            newPlaylist.xlPictureUrl = [playlist objectForKey:pictureXl];
+            newPlaylist.checksum = [playlist objectForKey:checksum];
+            newPlaylist.trackListUrl = [playlist objectForKey:trackList];
+            newPlaylist.creationDate = [playlist objectForKey:creationDate];
+            newPlaylist.type = [playlist objectForKey:type];
+            
+            [self.playlists addObject:newPlaylist];
+        }
+        
+        completionBlock(self.playlists);
         
     }];
     

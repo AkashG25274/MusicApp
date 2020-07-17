@@ -17,11 +17,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) NSMutableArray *tracks;
 @property (strong, nonatomic) NSMutableArray *albums;
 @property (strong, nonatomic) NSMutableArray *artists;
+@property (strong, nonatomic) NSMutableArray *playlists;
 
 + (id)sharedHandler;
 - (void)getTracks:(void(^)(NSArray *))completionBlock;
 - (void)getAlbums:(void(^)(NSArray *))completionBlock;
 - (void)getArtists:(void(^)(NSArray *))completionBlock;
+- (void)getPlaylists:(void(^)(NSArray *))completionBlock;
 - (void)downloadImageFrom:(NSString *)imageUrl completionBlock:(void(^)(UIImage *))completionBlock;
 
 @end

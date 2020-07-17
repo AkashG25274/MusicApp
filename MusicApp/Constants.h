@@ -17,6 +17,7 @@ extern NSString * const sourceUrl;
 extern NSString * const tracks;
 extern NSString * const albums;
 extern NSString * const artists;
+extern NSString * const playlists;
 
 extern NSString * const data;
 extern NSString * const title;
@@ -46,11 +47,17 @@ extern NSString * const pictureSmall;
 extern NSString * const pictureMedium;
 extern NSString * const pictureBig;
 extern NSString * const pictureXl;
+extern NSString * const publicString;
+extern NSString * const nbTracks;
+extern NSString * const checksum;
+extern NSString * const creationDate;
 
 extern NSString * const titleLabel;
 extern NSString * const artistNameLabel;
 extern NSString * const albumImageView;
 extern NSString * const albumTitleLabel;
+extern NSString * const playlistImageView;
+extern NSString * const playlistTitleLabel;
 
 extern NSString * const superView;
 extern NSString * const tableView;

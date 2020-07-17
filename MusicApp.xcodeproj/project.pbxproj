@@ -16,6 +16,7 @@
 		C13EF0AA24C02AA30024721C /* MainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = C13EF0A924C02AA30024721C /* MainTabBarController.m */; };
 		C13EF0AE24C02D380024721C /* TrackCustomTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C13EF0AD24C02D380024721C /* TrackCustomTableCell.m */; };
 		C13EF0B124C03D500024721C /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = C13EF0B024C03D500024721C /* Constants.m */; };
+		C181AE5A24C1708C009C59A2 /* PlaylistCustomCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C181AE5924C1708C009C59A2 /* PlaylistCustomCollectionViewCell.m */; };
 		C1ACCFAA24C06814009BB242 /* AlbumCustomCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C1ACCFA924C06814009BB242 /* AlbumCustomCollectionViewCell.m */; };
 		C1FCAAA424BF04B6001986DD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C1FCAAA324BF04B6001986DD /* AppDelegate.m */; };
 		C1FCAAAC24BF04B8001986DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1FCAAAB24BF04B8001986DD /* Assets.xcassets */; };
@@ -46,6 +47,8 @@
 		C13EF0AD24C02D380024721C /* TrackCustomTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackCustomTableCell.m; sourceTree = "<group>"; };
 		C13EF0AF24C03D500024721C /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		C13EF0B024C03D500024721C /* Constants.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		C181AE5824C1708C009C59A2 /* PlaylistCustomCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlaylistCustomCollectionViewCell.h; sourceTree = "<group>"; };
+		C181AE5924C1708C009C59A2 /* PlaylistCustomCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlaylistCustomCollectionViewCell.m; sourceTree = "<group>"; };
 		C1ACCFA824C06814009BB242 /* AlbumCustomCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlbumCustomCollectionViewCell.h; sourceTree = "<group>"; };
 		C1ACCFA924C06814009BB242 /* AlbumCustomCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlbumCustomCollectionViewCell.m; sourceTree = "<group>"; };
 		C1FCAA9F24BF04B6001986DD /* MusicApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -83,6 +86,8 @@
 				C13EF0AD24C02D380024721C /* TrackCustomTableCell.m */,
 				C1ACCFA824C06814009BB242 /* AlbumCustomCollectionViewCell.h */,
 				C1ACCFA924C06814009BB242 /* AlbumCustomCollectionViewCell.m */,
+				C181AE5824C1708C009C59A2 /* PlaylistCustomCollectionViewCell.h */,
+				C181AE5924C1708C009C59A2 /* PlaylistCustomCollectionViewCell.m */,
 			);
 			path = CustomUI;
 			sourceTree = "<group>";
@@ -250,6 +255,7 @@
 				C13EF0B124C03D500024721C /* Constants.m in Sources */,
 				C1FCAAB224BF04B8001986DD /* main.m in Sources */,
 				C1FCAAC424BF1A6A001986DD /* AlbumsTabViewController.m in Sources */,
+				C181AE5A24C1708C009C59A2 /* PlaylistCustomCollectionViewCell.m in Sources */,
 				C1FCAAA424BF04B6001986DD /* AppDelegate.m in Sources */,
 				C13EF0AE24C02D380024721C /* TrackCustomTableCell.m in Sources */,
 				C13EF0AA24C02AA30024721C /* MainTabBarController.m in Sources */,

@@ -15,6 +15,7 @@ NSString * const sourceUrl = @"http://api.deezer.com/editorial/0/charts";
 NSString * const tracks = @"tracks";
 NSString * const albums = @"albums";
 NSString * const artists = @"artists";
+NSString * const playlists = @"playlists";
 
 NSString * const data = @"data";
 NSString * const title = @"title";
@@ -44,11 +45,17 @@ NSString * const pictureSmall = @"picture_small";
 NSString * const pictureMedium = @"picture_medium";
 NSString * const pictureBig = @"picture_big";
 NSString * const pictureXl = @"picture_xl";
+NSString * const publicString = @"public";
+NSString * const nbTracks = @"nb_tracks";
+NSString * const checksum = @"checksum";
+NSString * const creationDate = @"creation_date";
 
 NSString * const titleLabel = @"titleLabel";
 NSString * const artistNameLabel = @"artistNameLabel";
 NSString * const albumImageView = @"albumImageView";
 NSString * const albumTitleLabel = @"albumTitleLabel";
+NSString * const playlistImageView = @"playlistImageView";
+NSString * const playlistTitleLabel = @"playlistTitleLabel";
 
 NSString * const superView = @"superView";
 NSString * const tableView = @"tableView";
