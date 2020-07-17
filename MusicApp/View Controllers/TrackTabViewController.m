@@ -35,6 +35,7 @@
     self.tableView.dataSource = self;
     
     self.trackList = [[NSArray alloc] init];
+    
     [self setUpDataSource];
 }
 
@@ -60,6 +61,23 @@
     }];
 }
 
+- (void)displayOptions
+{
+    UIAlertController *alertController = [[UIAlertController alloc] init];
+    
+    UIAlertAction *displayArtistAction = [UIAlertAction actionWithTitle:alertArtistAction style:UIAlertActionStyleDefault handler:nil];
+    UIAlertAction *displayAlbumAction = [UIAlertAction actionWithTitle:alertAlbumAction style:UIAlertActionStyleDefault handler:nil];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:alertCancelAction style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        [alertController dismissViewControllerAnimated:YES completion:nil];
+    }];
+    
+    [alertController addAction:displayArtistAction];
+    [alertController addAction:displayAlbumAction];
+    [alertController addAction:cancelAction];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
 #pragma mark <UITableViewDataSource>
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -76,6 +94,7 @@
     if(cell == nil)
     {
         cell = [[TrackCustomTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:trackCellIdentifier];
+        cell.delegate = self;
     }
     
     cell.titleLabel.text = currentTrack.title;

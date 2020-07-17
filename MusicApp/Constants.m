@@ -58,6 +58,7 @@ NSString * const albumImageView = @"albumImageView";
 NSString * const albumTitleLabel = @"albumTitleLabel";
 NSString * const playlistImageView = @"playlistImageView";
 NSString * const playlistTitleLabel = @"playlistTitleLabel";
+NSString * const optionsButton = @"optionsButton";
 
 NSString * const superView = @"superView";
 NSString * const tableView = @"tableView";
@@ -74,5 +75,9 @@ NSString * const playlistTabBarTitle = @"Playlists";
 
 NSString * const albumDefaultImage = @"download";
 NSString * const artistDefaultImage = @"profile";
+
+NSString * const alertArtistAction = @"See Artist";
+NSString * const alertAlbumAction = @"See Album";
+NSString * const alertCancelAction = @"Cancel";
 
 @end

@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "../Protocols/TrackDetailsDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface TrackTabViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface TrackTabViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, TrackDetailsDelegate>
 
 @end
 

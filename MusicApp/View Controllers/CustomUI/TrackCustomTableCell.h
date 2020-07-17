@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "../../Protocols/TrackDetailsDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -14,7 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (strong, nonatomic) UILabel *titleLabel;
 @property (strong, nonatomic) UILabel *artistNameLabel;
-
+@property (strong, nonatomic) UIButton *optionsButton;
+@property (strong, nonatomic) id <TrackDetailsDelegate> delegate;
 @end
 
 NS_ASSUME_NONNULL_END

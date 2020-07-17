@@ -94,5 +94,6 @@
     return cell;
 }
 
+#pragma mark <UIViewControllerPreviewingDelegate>
 
 @end

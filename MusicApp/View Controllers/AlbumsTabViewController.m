@@ -33,7 +33,6 @@
     [self.collectionView registerClass:[AlbumCustomCollectionViewCell class] forCellWithReuseIdentifier:albumCellIdentifier];
     self.collectionView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.collectionView];
-    
     [self setUpConstraints];
     
     self.albums = [[NSArray alloc] init];

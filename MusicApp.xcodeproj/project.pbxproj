@@ -44,6 +44,7 @@
 		C101D05024BF301600781F10 /* WebRequestHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebRequestHandler.m; sourceTree = "<group>"; };
 		C101D05224BF303500781F10 /* MusicAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MusicAPI.h; sourceTree = "<group>"; };
 		C101D05324BF303500781F10 /* MusicAPI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MusicAPI.m; sourceTree = "<group>"; };
+		C104FDDE24C1E09600B2999C /* TrackDetailsDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrackDetailsDelegate.h; sourceTree = "<group>"; };
 		C13EF0A824C02AA30024721C /* MainTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainTabBarController.h; sourceTree = "<group>"; };
 		C13EF0A924C02AA30024721C /* MainTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainTabBarController.m; sourceTree = "<group>"; };
 		C13EF0AC24C02D380024721C /* TrackCustomTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackCustomTableCell.h; sourceTree = "<group>"; };
@@ -88,6 +89,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C104FDDD24C1E07C00B2999C /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				C104FDDE24C1E09600B2999C /* TrackDetailsDelegate.h */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		C13EF0AB24C02D380024721C /* CustomUI */ = {
 			isa = PBXGroup;
 			children = (
@@ -133,6 +142,7 @@
 		C1FCAAA124BF04B6001986DD /* MusicApp */ = {
 			isa = PBXGroup;
 			children = (
+				C104FDDD24C1E07C00B2999C /* Protocols */,
 				C1FCAABE24BF0620001986DD /* Network Controllers */,
 				C1FCAABD24BF0614001986DD /* Model Classes */,
 				C1FCAABC24BF05E7001986DD /* Controllers */,

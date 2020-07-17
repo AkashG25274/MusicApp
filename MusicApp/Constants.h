@@ -60,6 +60,7 @@ extern NSString * const albumImageView;
 extern NSString * const albumTitleLabel;
 extern NSString * const playlistImageView;
 extern NSString * const playlistTitleLabel;
+extern NSString * const optionsButton;
 
 extern NSString * const superView;
 extern NSString * const tableView;
@@ -76,6 +77,10 @@ extern NSString * const playlistTabBarTitle;
 
 extern NSString * const albumDefaultImage;
 extern NSString * const artistDefaultImage;
+
+extern NSString * const alertArtistAction;
+extern NSString * const alertAlbumAction;
+extern NSString * const alertCancelAction;
 
 @end
 
