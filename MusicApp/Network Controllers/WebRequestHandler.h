@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface WebRequestHandler : NSObject
 
+@property (strong, nonatomic) NSCache *imageCache;
+
 + (id)sharedHandler;
 - (void)getTracksFrom:(NSString *)sourceUrl andCompletionHandler:(void(^)(NSArray *))completionBlock;
 - (void)getAlbums:(void(^)(NSArray *))completionBlock;

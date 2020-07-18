@@ -44,22 +44,20 @@
     [self.tableView setTranslatesAutoresizingMaskIntoConstraints:NO];
     self.tableView.tableHeaderView = self.headerView;
     self.tableView.rowHeight = 70;
+    self.tableView.backgroundColor = [UIColor whiteColor];
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:trackCellIdentifier];
     [self.view addSubview:self.tableView];
     
-    [self setUpConstraints];
+    [self setUpTableViewConstraints];
     [self setUpHeaderViewConstraints];
     [self.headerView setUpConstraints];
     
-    self.headerView.albumImageView.image = [UIImage imageNamed:@"profile"];
-    self.headerView.titleLabel.text = @"Album Title";
-    self.headerView.artistNameLabel.text = @"Atist Name";
-    
-    self.tableView.backgroundColor = [UIColor whiteColor];
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:trackCellIdentifier];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
     self.trackList = [[NSArray alloc] init];
+    
+    [self setUpViewsForHeaderView];
     [self setUpDataSource];
 }
 
@@ -73,13 +71,22 @@
     self.tableView.tableHeaderView = self.tableView.tableHeaderView;
 }
 
-- (void)setUpConstraints
+- (void)setUpTableViewConstraints
 {
     NSDictionary *viewsDictionary = @{superView:self.view, tableView:self.tableView};
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[tableView(==superView)]|" options:0 metrics:nil views:viewsDictionary]];
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[tableView(==superView)]|" options:0 metrics:nil views:viewsDictionary]];
+}
+
+- (void)setUpViewsForHeaderView
+{
+    WebRequestHandler *requestHandler = [WebRequestHandler sharedHandler];
+    UIImage *albumImage = [requestHandler.imageCache objectForKey:self.album.coverImageUrl];
+    self.headerView.albumImageView.image = albumImage;
+    self.headerView.titleLabel.text = self.album.title;
+    self.headerView.artistNameLabel.text = self.album.artist.name;
 }
 
 - (void)setUpDataSource

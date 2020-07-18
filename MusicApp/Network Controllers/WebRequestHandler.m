@@ -29,6 +29,18 @@
     return sharedHandler;
 }
 
+- (id)init
+{
+    self = [super init];
+    
+    if (self)
+    {
+        self.imageCache = [[NSCache alloc]init];
+    }
+    
+    return self;
+}
+
 - (void)getTracksFrom:(NSString *)sourceUrl andCompletionHandler:(void (^)(NSArray * _Nonnull))completionBlock
 {
     NSURL *url = [NSURL URLWithString:sourceUrl];
@@ -205,15 +217,25 @@
 
 - (void)downloadImageFrom:(NSString *)imageUrl completionBlock:(void (^)(UIImage * _Nonnull))completionBlock
 {
-    NSURL *url = [NSURL URLWithString:imageUrl];
-    NSURLSessionDataTask *imageDownloadTask = [[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-       
-        UIImage *image = [UIImage imageWithData:data];
-        
-        completionBlock(image);
-    }];
+    UIImage *image = [self.imageCache objectForKey:imageUrl];
     
-    [imageDownloadTask resume];
+    if(image)
+    {
+        completionBlock(image);
+    }
+    else
+    {
+        NSURL *url = [NSURL URLWithString:imageUrl];
+        NSURLSessionDataTask *imageDownloadTask = [[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+       
+            UIImage *image = [UIImage imageWithData:data];
+            [self.imageCache setObject:image forKey:imageUrl];
+            
+            completionBlock(image);
+        }];
+        
+         [imageDownloadTask resume];
+    }
 }
 
 @end

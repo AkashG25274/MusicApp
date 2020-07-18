@@ -46,15 +46,15 @@
 {
     NSDictionary *viewsDictionary = @{@"albumImageView":self.albumImageView, @"titleLabel":self.titleLabel, @"artistNameLabel":self.artistNameLabel, @"seeArtistButton":self.seeArtistButton};
     
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[albumImageView(150)]|" options:0 metrics:nil views:viewsDictionary]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[albumImageView(150)]-10-[titleLabel]-10-[artistNameLabel]-10-[seeArtistButton]-30-|" options:NSLayoutFormatAlignAllCenterX metrics:nil views:viewsDictionary]];
     
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[titleLabel]-10-[artistNameLabel]-10-[seeArtistButton]|" options:NSLayoutFormatAlignAllCenterX metrics:nil views:viewsDictionary]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[albumImageView(150)]" options:0 metrics:nil views:viewsDictionary]];
     
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[albumImageView(150)]-10-[titleLabel]-10-|" options:0 metrics:nil views:viewsDictionary]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[titleLabel]|" options:0 metrics:nil views:viewsDictionary]];
     
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[albumImageView(150)]-10-[artistNameLabel]-10-|" options:0 metrics:nil views:viewsDictionary]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[artistNameLabel]|" options:0 metrics:nil views:viewsDictionary]];
     
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[albumImageView(150)]-10-[seeArtistButton]-10-|" options:0 metrics:nil views:viewsDictionary]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[seeArtistButton]|" options:0 metrics:nil views:viewsDictionary]];
 }
 
 - (void)displayArtist:(UIButton *)button
