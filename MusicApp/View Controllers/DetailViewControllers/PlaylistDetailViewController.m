@@ -48,19 +48,19 @@
     self.tableView.tableHeaderView = self.headerView;
     self.tableView.rowHeight = 70;
     self.tableView.backgroundColor = [UIColor whiteColor];
+    [self.tableView registerClass:[PlaylistTrackCustomCell class] forCellReuseIdentifier:trackCellIdentifier];
     [self.view addSubview:self.tableView];
     
     [self setUpTableViewConstraints];
     [self setUpHeaderViewConstraints];
     [self.headerView setUpConstraints];
     
-    self.headerView.imageView.image = [UIImage imageNamed:@"profile"];
-    self.headerView.textLabel.text = @"Hello";
-    [self.tableView registerClass:[PlaylistTrackCustomCell class] forCellReuseIdentifier:trackCellIdentifier];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
     self.trackList = [[NSArray alloc] init];
+    
+    [self setUpViewsForHeaderView];
     [self setUpDataSource];
 }
 
@@ -72,6 +72,14 @@
 
     [self.tableView.tableHeaderView layoutIfNeeded];
     self.tableView.tableHeaderView = self.tableView.tableHeaderView;
+}
+
+- (void)setUpViewsForHeaderView
+{
+    WebRequestHandler *requestHandler = [WebRequestHandler sharedHandler];
+    UIImage *playlistImage = [requestHandler.imageCache objectForKey:self.playlist.pictureUrl];
+    self.headerView.imageView.image = playlistImage;
+    self.headerView.textLabel.text = self.playlist.title;
 }
 
 - (void)setUpTableViewConstraints

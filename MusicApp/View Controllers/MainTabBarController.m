@@ -45,7 +45,7 @@
         playlistsTabNavigationController.tabBarItem.title = playlistTabBarTitle;
         [playlistsTabNavigationController.tabBarItem setTitleTextAttributes:@{NSFontAttributeName: [UIFont boldSystemFontOfSize:15.0], NSForegroundColorAttributeName: [UIColor blueColor]} forState:UIControlStateNormal];
         
-        self.viewControllers = @[albumsTabNavigationController, artistsTabNavigationController, playlistsTabNavigationController, trackTabNavigationController];
+        self.viewControllers = @[playlistsTabNavigationController, albumsTabNavigationController, artistsTabNavigationController, trackTabNavigationController];
     }
     
     return self;
