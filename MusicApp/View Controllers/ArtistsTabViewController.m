@@ -8,6 +8,7 @@
 
 #import "ArtistsTabViewController.h"
 #import "../Network Controllers/WebRequestHandler.h"
+#import "./DetailViewControllers/ArtistDetailViewController.h"
 #import "../Model Classes/Artist.h"
 #import "../Constants.h"
 
@@ -86,5 +87,12 @@
     return cell;
 }
 
+#pragma mark <UITableViewDelegate>
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    ArtistDetailViewController *artistDetailViewController = [[ArtistDetailViewController alloc] init];
+    [self.navigationController pushViewController:artistDetailViewController animated:YES];
+}
 
 @end

@@ -8,6 +8,7 @@
 
 #import "AlbumDetailViewController.h"
 #import "../../Network Controllers/WebRequestHandler.h"
+#import "../CustomUI/AlbumHeaderView.h"
 #import "../../Model Classes/Track.h"
 #import "../../Constants.h"
 
@@ -15,6 +16,7 @@
 
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) NSArray *trackList;
+@property (strong, nonatomic) AlbumHeaderView *headerView;
 
 @end
 
@@ -34,11 +36,24 @@
 {
     [super viewDidLoad];
     
+    self.headerView = [[AlbumHeaderView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+    [self.headerView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    self.headerView.backgroundColor = UIColor.whiteColor;
+    
     self.tableView = [[UITableView alloc] init];
     [self.tableView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    self.tableView.tableHeaderView = self.headerView;
     self.tableView.rowHeight = 70;
     [self.view addSubview:self.tableView];
+    
     [self setUpConstraints];
+    [self setUpHeaderViewConstraints];
+    [self.headerView setUpConstraints];
+    
+    self.headerView.albumImageView.image = [UIImage imageNamed:@"profile"];
+    self.headerView.titleLabel.text = @"Album Title";
+    self.headerView.artistNameLabel.text = @"Atist Name";
+    
     self.tableView.backgroundColor = [UIColor whiteColor];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:trackCellIdentifier];
     self.tableView.delegate = self;
@@ -46,6 +61,16 @@
     
     self.trackList = [[NSArray alloc] init];
     [self setUpDataSource];
+}
+
+- (void)setUpHeaderViewConstraints
+{
+    [[self.headerView.centerXAnchor constraintEqualToAnchor:self.tableView.centerXAnchor] setActive:YES];
+    [[self.headerView.widthAnchor constraintEqualToAnchor:self.tableView.widthAnchor] setActive:YES];
+    [[self.headerView.topAnchor constraintEqualToAnchor:self.tableView.topAnchor] setActive:YES];
+    
+    [self.tableView.tableHeaderView layoutIfNeeded];
+    self.tableView.tableHeaderView = self.tableView.tableHeaderView;
 }
 
 - (void)setUpConstraints

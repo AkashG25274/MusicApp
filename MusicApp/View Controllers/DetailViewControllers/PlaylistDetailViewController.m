@@ -10,12 +10,14 @@
 #import "../../Network Controllers/WebRequestHandler.h"
 #import "../../Model Classes/Track.h"
 #import "../CustomUI/PlaylistTrackCustomCell.h"
+#import "../CustomUI/ArtistPlaylistHeaderView.h"
 #import "../../Constants.h"
 
 @interface PlaylistDetailViewController ()
 
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) NSArray *trackList;
+@property (strong, nonatomic) ArtistPlaylistHeaderView *headerView;
 
 @end
 
@@ -35,12 +37,25 @@
 {
     [super viewDidLoad];
     
+    self.view.backgroundColor = UIColor.whiteColor;
+    
+    self.headerView = [[ArtistPlaylistHeaderView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+    [self.headerView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    self.headerView.backgroundColor = UIColor.whiteColor;
+    
     self.tableView = [[UITableView alloc] init];
     [self.tableView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    self.tableView.tableHeaderView = self.headerView;
     self.tableView.rowHeight = 70;
-    [self.view addSubview:self.tableView];
-    [self setUpConstraints];
     self.tableView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:self.tableView];
+    
+    [self setUpTableViewConstraints];
+    [self setUpHeaderViewConstraints];
+    [self.headerView setUpConstraints];
+    
+    self.headerView.imageView.image = [UIImage imageNamed:@"profile"];
+    self.headerView.textLabel.text = @"Hello";
     [self.tableView registerClass:[PlaylistTrackCustomCell class] forCellReuseIdentifier:trackCellIdentifier];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -49,9 +64,19 @@
     [self setUpDataSource];
 }
 
-- (void)setUpConstraints
+- (void)setUpHeaderViewConstraints
 {
-    NSDictionary *viewsDictionary = @{superView:self.view, tableView:self.tableView};
+    [[self.headerView.centerXAnchor constraintEqualToAnchor:self.tableView.centerXAnchor] setActive:YES];
+    [[self.headerView.widthAnchor constraintEqualToAnchor:self.tableView.widthAnchor] setActive:YES];
+    [[self.headerView.topAnchor constraintEqualToAnchor:self.tableView.topAnchor] setActive:YES];
+
+    [self.tableView.tableHeaderView layoutIfNeeded];
+    self.tableView.tableHeaderView = self.tableView.tableHeaderView;
+}
+
+- (void)setUpTableViewConstraints
+{
+    NSDictionary *viewsDictionary = @{superView:self.view, @"headerView":self.headerView, tableView:self.tableView};
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[tableView(==superView)]|" options:0 metrics:nil views:viewsDictionary]];
     
