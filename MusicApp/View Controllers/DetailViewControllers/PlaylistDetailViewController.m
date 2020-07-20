@@ -9,7 +9,7 @@
 #import "PlaylistDetailViewController.h"
 #import "../../Network Controllers/WebRequestHandler.h"
 #import "../../Model Classes/Track.h"
-#import "../CustomUI/PlaylistTrackCustomCell.h"
+#import "../CustomUI/TrackCustomTableCell.h"
 #import "../CustomUI/ArtistPlaylistHeaderView.h"
 #import "../../Constants.h"
 
@@ -48,7 +48,7 @@
     self.tableView.tableHeaderView = self.headerView;
     self.tableView.rowHeight = 70;
     self.tableView.backgroundColor = [UIColor whiteColor];
-    [self.tableView registerClass:[PlaylistTrackCustomCell class] forCellReuseIdentifier:trackCellIdentifier];
+    [self.tableView registerClass:[TrackCustomTableCell class] forCellReuseIdentifier:trackCellIdentifier];
     [self.view addSubview:self.tableView];
     
     [self setUpTableViewConstraints];
@@ -115,11 +115,11 @@
 {
     Track *currentTrack = self.trackList[indexPath.row];
     
-    PlaylistTrackCustomCell *cell = (PlaylistTrackCustomCell *)[self.tableView dequeueReusableCellWithIdentifier:trackCellIdentifier forIndexPath:indexPath];
+    TrackCustomTableCell *cell = (TrackCustomTableCell *)[self.tableView dequeueReusableCellWithIdentifier:trackCellIdentifier forIndexPath:indexPath];
     
     if(cell == nil)
     {
-        cell = [[PlaylistTrackCustomCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:trackCellIdentifier];
+        cell = [[TrackCustomTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:trackCellIdentifier];
     }
     
     cell.titleLabel.text = currentTrack.title;

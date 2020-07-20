@@ -1,21 +1,21 @@
 //
-//  ArtistDetailViewController.h
+//  ContextViewController.h
 //  MusicApp
 //
-//  Created by mmt on 18/07/20.
+//  Created by mmt on 19/07/20.
 //  Copyright © 2020 mmt. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import "../../Model Classes/Artist.h"
+#import "../../Model Classes/Album.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ArtistDetailViewController : UIViewController
+@interface ContextViewController : UIAlertController
 
 @property (strong, nonatomic) Artist *artist;
-@property (strong, nonatomic) NSArray *trackList;
-@property (strong, nonatomic) NSArray *albums;
+@property (strong, nonatomic) Album *album;
 
 @end
 

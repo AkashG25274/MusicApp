@@ -1,27 +1,27 @@
 //
-//  AlbumsTabViewController.m
+//  PlaylistsTabViewController.m
 //  MusicApp
 //
 //  Created by mmt on 15/07/20.
 //  Copyright © 2020 mmt. All rights reserved.
 //
 
-#import "AlbumsTabViewController.h"
+#import "PlaylistsViewController.h"
 #import "./CustomUI/AlbumCustomCollectionViewCell.h"
-#import "../Model Classes/Album.h"
+#import "../Model Classes/Playlist.h"
 #import "../Network Controllers/WebRequestHandler.h"
-#import "./DetailViewControllers/AlbumDetailViewController.h"
+#import "./DetailViewControllers/PlaylistDetailViewController.h"
 #import "../Constants.h"
 
-@interface AlbumsTabViewController ()
+@interface PlaylistsViewController ()
 
 @property (strong, nonatomic) UICollectionView *collectionView;
-@property (strong, nonatomic) NSArray *albums;
+@property (strong, nonatomic) NSArray *playlists;
 @property (assign) UIEdgeInsets sectionInsets;
 
 @end
 
-@implementation AlbumsTabViewController
+@implementation PlaylistsViewController
 
 - (void)viewDidLoad
 {
@@ -33,9 +33,10 @@
     [self.collectionView registerClass:[AlbumCustomCollectionViewCell class] forCellWithReuseIdentifier:albumCellIdentifier];
     self.collectionView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.collectionView];
+    
     [self setUpConstraints];
     
-    self.albums = [[NSArray alloc] init];
+    self.playlists = [[NSArray alloc] init];
     self.sectionInsets = UIEdgeInsetsMake(50.0, 20.0, 50.0, 20.0);
     
     [self.collectionView setDataSource:self];
@@ -56,9 +57,10 @@
 - (void)setUpDataSource
 {
     WebRequestHandler *requestHandler = [WebRequestHandler sharedHandler];
-    [requestHandler getAlbums:^(NSArray * _Nonnull albumList) {
+    [requestHandler getPlaylists:^(NSArray * _Nonnull listOfPlaylist) {
         
-        self.albums = albumList;
+        self.playlists = listOfPlaylist;
+        
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.collectionView reloadData];
         });
@@ -69,39 +71,39 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return self.albums.count;
+    return self.playlists.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    AlbumCustomCollectionViewCell *albumCell = (AlbumCustomCollectionViewCell *)[self.collectionView dequeueReusableCellWithReuseIdentifier:albumCellIdentifier forIndexPath:indexPath];
+    AlbumCustomCollectionViewCell *playlistCell = (AlbumCustomCollectionViewCell *)[self.collectionView dequeueReusableCellWithReuseIdentifier:albumCellIdentifier forIndexPath:indexPath];
     
-    albumCell.layer.cornerRadius = 1.0f;
-    albumCell.layer.borderWidth = 1.0f;
-    albumCell.layer.borderColor = UIColor.blackColor.CGColor;
+    playlistCell.layer.cornerRadius = 1.0f;
+    playlistCell.layer.borderWidth = 1.0f;
+    playlistCell.layer.borderColor = UIColor.blackColor.CGColor;
     
-    Album *currentAlbum = self.albums[indexPath.row];
-    albumCell.albumImageView.image = [UIImage imageNamed:albumDefaultImage];
-    albumCell.albumTitleLabel.text = currentAlbum.title;
+    Playlist *currentPlaylist = self.playlists[indexPath.row];
+    playlistCell.albumImageView.image = [UIImage imageNamed:albumDefaultImage];
+    playlistCell.albumTitleLabel.text = currentPlaylist.title;
     
     WebRequestHandler *requestHandler = [WebRequestHandler sharedHandler];
-    [requestHandler downloadImageFrom:currentAlbum.coverImageUrl completionBlock:^(UIImage * _Nonnull albumImage) {
-
+    [requestHandler downloadImageFrom:currentPlaylist.pictureUrl completionBlock:^(UIImage * _Nonnull playlistImage) {
+        
         dispatch_async(dispatch_get_main_queue(), ^{
-            albumCell.albumImageView.image = albumImage;
+            playlistCell.albumImageView.image = playlistImage;
         });
     }];
     
-    return albumCell;
+    return playlistCell;
 }
 
 #pragma mark <UICollectionViewDelegate>
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    AlbumDetailViewController *albumDetailViewController = [[AlbumDetailViewController alloc] init];
-    albumDetailViewController.album = self.albums[indexPath.row];
-    [self.navigationController pushViewController:albumDetailViewController animated:YES];
+    PlaylistDetailViewController *playlistDetailViewController = [[PlaylistDetailViewController alloc] init];
+    playlistDetailViewController.playlist = self.playlists[indexPath.row];
+    [self.navigationController pushViewController:playlistDetailViewController animated:YES];
 }
 
 #pragma mark <UICollectionViewFlowLayoutDelegate>

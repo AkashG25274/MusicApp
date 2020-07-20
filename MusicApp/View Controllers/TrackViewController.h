@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface TrackTabViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, TrackDetailsDelegate>
+@interface TrackViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, TrackDetailsDelegate>
 
 @end
 

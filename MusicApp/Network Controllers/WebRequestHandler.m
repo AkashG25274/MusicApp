@@ -77,6 +77,16 @@
             newTrack.trackUrl = [track objectForKey:preview];
             newTrack.type = [track objectForKey:type];
             
+            NSDictionary *artistDetails = [track objectForKey:artist];
+            Artist *artistOfCurrentTrack = [[Artist alloc] init];
+            artistOfCurrentTrack = [self parseArtistDetails:artistDetails];
+            newTrack.artist = artistOfCurrentTrack;
+            
+            NSDictionary *albumDetails = [track objectForKey:album];
+            Album *albumOfCurrentTrack = [[Album alloc] init];
+            albumOfCurrentTrack = [self parseAlbumDetails:albumDetails];
+            newTrack.album = albumOfCurrentTrack;
+            
             [trackList addObject:newTrack];
         }
         
@@ -101,19 +111,7 @@
         for(NSDictionary *album in albumDetails)
         {
             Album *newAlbum = [[Album alloc] init];
-            newAlbum.albumId = [[album objectForKey:idString] longValue];
-            newAlbum.title = [album objectForKey:title];
-            newAlbum.albumInfoUrl = [album objectForKey:linkUrl];
-            newAlbum.coverImageUrl = [album objectForKey:cover];
-            newAlbum.coverSmallUrl = [album objectForKey:coverSmall];
-            newAlbum.coverMediumUrl = [album objectForKey:coverMedium];
-            newAlbum.coverBigUrl = [album objectForKey:coverBig];
-            newAlbum.coverXlUrl = [album objectForKey:coverXl];
-            newAlbum.recordType = [album objectForKey:recordType];
-            newAlbum.trackListUrl = [album objectForKey:trackList];
-            newAlbum.explicitLyrics = [[album objectForKey:explicitLyrics] boolValue];
-            newAlbum.position = [[album valueForKey:position] intValue];
-            newAlbum.type = [album objectForKey:type];
+            newAlbum = [self parseAlbumDetails:album];
             
             NSDictionary *artistDetails = [album objectForKey:artist];
             Artist *artistOfCurrentAlbum = [[Artist alloc] init];
@@ -213,6 +211,26 @@
     newArtist.type = [artist objectForKey:type];
     
     return newArtist;
+}
+
+- (Album *)parseAlbumDetails:(NSDictionary *)album
+{
+    Album *newAlbum = [[Album alloc] init];
+    newAlbum.albumId = [[album objectForKey:idString] longValue];
+    newAlbum.title = [album objectForKey:title];
+    newAlbum.albumInfoUrl = [album objectForKey:linkUrl];
+    newAlbum.coverImageUrl = [album objectForKey:cover];
+    newAlbum.coverSmallUrl = [album objectForKey:coverSmall];
+    newAlbum.coverMediumUrl = [album objectForKey:coverMedium];
+    newAlbum.coverBigUrl = [album objectForKey:coverBig];
+    newAlbum.coverXlUrl = [album objectForKey:coverXl];
+    newAlbum.recordType = [album objectForKey:recordType];
+    newAlbum.trackListUrl = [album objectForKey:trackList];
+    newAlbum.explicitLyrics = [[album objectForKey:explicitLyrics] boolValue];
+    newAlbum.position = [[album valueForKey:position] intValue];
+    newAlbum.type = [album objectForKey:type];
+    
+    return newAlbum;
 }
 
 - (void)downloadImageFrom:(NSString *)imageUrl completionBlock:(void (^)(UIImage * _Nonnull))completionBlock

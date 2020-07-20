@@ -18,6 +18,7 @@ NSString * const artists = @"artists";
 NSString * const playlists = @"playlists";
 
 NSString * const artist = @"artist";
+NSString * const album = @"album";
 
 NSString * const data = @"data";
 NSString * const title = @"title";

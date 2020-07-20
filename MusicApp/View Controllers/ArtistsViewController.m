@@ -6,20 +6,20 @@
 //  Copyright © 2020 mmt. All rights reserved.
 //
 
-#import "ArtistsTabViewController.h"
+#import "ArtistsViewController.h"
 #import "../Network Controllers/WebRequestHandler.h"
 #import "./DetailViewControllers/ArtistDetailViewController.h"
 #import "../Model Classes/Artist.h"
 #import "../Constants.h"
 
-@interface ArtistsTabViewController ()
+@interface ArtistsViewController ()
 
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) NSArray *artists;
 
 @end
 
-@implementation ArtistsTabViewController
+@implementation ArtistsViewController
 
 - (void)viewDidLoad
 {
@@ -92,6 +92,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ArtistDetailViewController *artistDetailViewController = [[ArtistDetailViewController alloc] init];
+    artistDetailViewController.artist = self.artists[indexPath.row];
+    artistDetailViewController.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:artistDetailViewController animated:YES];
 }
 

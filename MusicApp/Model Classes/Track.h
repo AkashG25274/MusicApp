@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Artist.h"
+#import "Album.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -24,6 +26,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (assign) int explicitContentCover;
 @property (copy, nonatomic) NSString *trackUrl;
 @property (copy, nonatomic) NSString *type;
+@property (strong, nonatomic) Artist *artist;
+@property (strong, nonatomic) Album *album;
 
 //- (id)initWith:(NSString *)title duration:(int)duration andTrackUrl:(NSString *)trackUrl;
 

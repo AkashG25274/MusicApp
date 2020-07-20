@@ -1,5 +1,5 @@
 //
-//  ArtistsTabViewController.h
+//  PlaylistsTabViewController.h
 //  MusicApp
 //
 //  Created by mmt on 15/07/20.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ArtistsTabViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface PlaylistsViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate>
 
 @end
 

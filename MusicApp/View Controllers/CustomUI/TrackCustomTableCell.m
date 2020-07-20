@@ -29,20 +29,20 @@
         
         self.optionsButton = [[UIButton alloc] init];
         [self.optionsButton setTranslatesAutoresizingMaskIntoConstraints:NO];
-        [self.optionsButton setTitle:@"Options" forState:UIControlStateNormal];
+        [self.optionsButton setImage:[UIImage imageNamed:@"optionMenu"] forState:UIControlStateNormal];
         [self.optionsButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [self.optionsButton addTarget:self action:@selector(optionsTapped:) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:self.optionsButton];
         
         NSDictionary *viewsDictionary = @{titleLabel:self.titleLabel, artistNameLabel:self.artistNameLabel, optionsButton:self.optionsButton};
         
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[titleLabel]-10-[artistNameLabel]" options:0 metrics:nil views:viewsDictionary]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[titleLabel]-10-[artistNameLabel]-10-|" options:0 metrics:nil views:viewsDictionary]];
         
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-15-[optionsButton]-15-|" options:0 metrics:nil views:viewsDictionary]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[optionsButton(20)]" options:0 metrics:nil views:viewsDictionary]];
         
         [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[titleLabel]" options:0 metrics:nil views:viewsDictionary]];
         
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[artistNameLabel]-[optionsButton]-10-|" options:0 metrics:nil views:viewsDictionary]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[artistNameLabel]-[optionsButton(25)]-10-|" options:NSLayoutFormatAlignAllCenterY metrics:nil views:viewsDictionary]];
     }
     
     return self;
@@ -50,9 +50,9 @@
 
 - (void)optionsTapped:(UIButton *)button
 {
-    if([self.delegate respondsToSelector:@selector(displayOptions)])
+    if([self.delegate respondsToSelector:@selector(displayOptions:)])
     {
-        [self.delegate displayOptions];
+        [self.delegate displayOptions:self];
     }
 }
 

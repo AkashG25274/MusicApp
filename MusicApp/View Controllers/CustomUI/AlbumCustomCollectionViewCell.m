@@ -25,6 +25,7 @@
         self.albumTitleLabel = [[UILabel alloc] init];
         [self.albumTitleLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
         [self.albumTitleLabel setFont:[UIFont systemFontOfSize:15.0f]];
+        [self.albumTitleLabel setContentMode:UIViewContentModeCenter];
         [self.contentView addSubview:self.albumTitleLabel];
         
         NSDictionary *viewsDictionary = @{albumImageView:self.albumImageView, albumTitleLabel:self.albumTitleLabel};

@@ -34,7 +34,7 @@
 {
     NSDictionary *viewsDictionary = @{@"imageView":self.imageView, @"textLabel":self.textLabel};
     
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[imageView(150)]-10-[textLabel]-30-|" options:NSLayoutFormatAlignAllCenterX metrics:nil views:viewsDictionary]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-15-[imageView(150)]-10-[textLabel]-30-|" options:NSLayoutFormatAlignAllCenterX metrics:nil views:viewsDictionary]];
     
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[imageView(150)]" options:0 metrics:nil views:viewsDictionary]];
     

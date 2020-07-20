@@ -21,6 +21,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     MainTabBarController *mainTabBarController = [[MainTabBarController alloc] init];
+    [mainTabBarController setUpConstraints];
     [self.window setRootViewController:mainTabBarController];
     [self.window makeKeyAndVisible];
     

@@ -20,6 +20,7 @@ extern NSString * const artists;
 extern NSString * const playlists;
 
 extern NSString * const artist;
+extern NSString * const album;
 
 extern NSString * const data;
 extern NSString * const title;
