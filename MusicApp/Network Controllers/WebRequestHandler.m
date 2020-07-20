@@ -41,7 +41,7 @@
     return self;
 }
 
-- (void)getTracksFrom:(NSString *)sourceUrl andCompletionHandler:(void (^)(NSArray * _Nonnull))completionBlock
+- (void)getTracksFrom:(NSString *)sourceUrl andCompletionHandler:(void (^)(NSArray * _Nullable))completionBlock
 {
     NSURL *url = [NSURL URLWithString:sourceUrl];
     
@@ -49,49 +49,55 @@
         NSMutableArray *trackList = [[NSMutableArray alloc] init];
         NSArray *trackDetails = [[NSArray alloc] init];
         
-        NSDictionary *mainJsonDictionary = [NSJSONSerialization JSONObjectWithData:jsonData options:kNilOptions error:&error];
-        
-        if([sourceUrl isEqualToString:baseUrl])
+        if(jsonData)
         {
-            NSDictionary *trackDictionary = [mainJsonDictionary objectForKey:tracks];
-            trackDetails = [trackDictionary objectForKey:data];
+            NSDictionary *mainJsonDictionary = [NSJSONSerialization JSONObjectWithData:jsonData options:kNilOptions error:&error];
+        
+            if([sourceUrl isEqualToString:baseUrl])
+            {
+                NSDictionary *trackDictionary = [mainJsonDictionary objectForKey:tracks];
+                trackDetails = [trackDictionary objectForKey:data];
+            }
+            else
+            {
+                trackDetails = [mainJsonDictionary objectForKey:data];
+            }
+            
+            for(NSDictionary *track in trackDetails)
+            {
+                Track *newTrack = [[Track alloc] init];
+                newTrack.trackId = [[track objectForKey:idString] longValue];
+                newTrack.title = [track objectForKey:title];
+                newTrack.titleShort = [track objectForKey:titleShort];
+                newTrack.titleVersion = [track objectForKey:titleVersion];
+                newTrack.trackInfoUrl = [track objectForKey:linkUrl];
+                newTrack.duration = [[track valueForKey:duration] intValue];
+                newTrack.rank = [[track valueForKey:rank] intValue];
+                newTrack.explicitLyrics = [[track objectForKey:explicitLyrics] boolValue];
+                newTrack.explicitContentLyrics = [[track objectForKey:explicitContentLyrics] intValue];;
+                newTrack.explicitContentCover = [[track objectForKey:explicitContentCover] intValue];;
+                newTrack.trackUrl = [track objectForKey:preview];
+                newTrack.type = [track objectForKey:type];
+            
+                NSDictionary *artistDetails = [track objectForKey:artist];
+                Artist *artistOfCurrentTrack = [[Artist alloc] init];
+                artistOfCurrentTrack = [self parseArtistDetails:artistDetails];
+                newTrack.artist = artistOfCurrentTrack;
+            
+                NSDictionary *albumDetails = [track objectForKey:album];
+                Album *albumOfCurrentTrack = [[Album alloc] init];
+                albumOfCurrentTrack = [self parseAlbumDetails:albumDetails];
+                newTrack.album = albumOfCurrentTrack;
+            
+                [trackList addObject:newTrack];
+            }
+        
+            completionBlock(trackList);
         }
         else
         {
-            trackDetails = [mainJsonDictionary objectForKey:data];
+            completionBlock(nil);
         }
-        
-        for(NSDictionary *track in trackDetails)
-        {
-            Track *newTrack = [[Track alloc] init];
-            newTrack.trackId = [[track objectForKey:idString] longValue];
-            newTrack.title = [track objectForKey:title];
-            newTrack.titleShort = [track objectForKey:titleShort];
-            newTrack.titleVersion = [track objectForKey:titleVersion];
-            newTrack.trackInfoUrl = [track objectForKey:linkUrl];
-            newTrack.duration = [[track valueForKey:duration] intValue];
-            newTrack.rank = [[track valueForKey:rank] intValue];
-            newTrack.explicitLyrics = [[track objectForKey:explicitLyrics] boolValue];
-            newTrack.explicitContentLyrics = [[track objectForKey:explicitContentLyrics] intValue];;
-            newTrack.explicitContentCover = [[track objectForKey:explicitContentCover] intValue];;
-            newTrack.trackUrl = [track objectForKey:preview];
-            newTrack.type = [track objectForKey:type];
-            
-            NSDictionary *artistDetails = [track objectForKey:artist];
-            Artist *artistOfCurrentTrack = [[Artist alloc] init];
-            artistOfCurrentTrack = [self parseArtistDetails:artistDetails];
-            newTrack.artist = artistOfCurrentTrack;
-            
-            NSDictionary *albumDetails = [track objectForKey:album];
-            Album *albumOfCurrentTrack = [[Album alloc] init];
-            albumOfCurrentTrack = [self parseAlbumDetails:albumDetails];
-            newTrack.album = albumOfCurrentTrack;
-            
-            [trackList addObject:newTrack];
-        }
-        
-        completionBlock(trackList);
-        
     }];
     
     [downloadTask resume];

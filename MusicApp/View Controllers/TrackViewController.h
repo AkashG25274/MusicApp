@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TrackViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, TrackDetailsDelegate>
 
+@property (copy, nonatomic) NSString *trackURL;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -53,7 +53,7 @@
 - (void)setUpDataSource
 {
     WebRequestHandler *requestHandler = [WebRequestHandler sharedHandler];
-    [requestHandler getTracksFrom:baseUrl andCompletionHandler:^(NSArray * _Nonnull tracks) {
+    [requestHandler getTracksFrom:self.trackURL andCompletionHandler:^(NSArray * _Nonnull tracks) {
         
         self.trackList = tracks;
         
@@ -65,22 +65,10 @@
 
 - (void)displayOptions:(UITableViewCell *)cell
 {
-    NSLog(@"In display Options");
-    
     ContextViewController *alertController = [[ContextViewController alloc] init];
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     alertController.artist = [self.trackList[indexPath.row] artist];
     alertController.album = [self.trackList[indexPath.row] album];
-    
-//    UIAlertAction *displayArtistAction = [UIAlertAction actionWithTitle:alertArtistAction style:UIAlertActionStyleDefault handler:nil];
-//    UIAlertAction *displayAlbumAction = [UIAlertAction actionWithTitle:alertAlbumAction style:UIAlertActionStyleDefault handler:nil];
-//    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:alertCancelAction style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-//        [alertController dismissViewControllerAnimated:YES completion:nil];
-//    }];
-//
-//    [alertController addAction:displayArtistAction];
-//    [alertController addAction:displayAlbumAction];
-//    [alertController addAction:cancelAction];
 
     [self presentViewController:alertController animated:YES completion:nil];
 }
@@ -108,6 +96,14 @@
     cell.artistNameLabel.text = currentTrack.artist.name;
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSDictionary *userInfo = @{@"trackList":self.trackList, @"currentTrackIndex":[NSNumber numberWithInteger:indexPath.row]};
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"PlayTrack" object:nil userInfo:userInfo];
+    
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 @end

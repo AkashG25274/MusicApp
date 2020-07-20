@@ -7,11 +7,12 @@
 //
 
 #import "PlaylistDetailViewController.h"
-#import "../../Network Controllers/WebRequestHandler.h"
-#import "../../Model Classes/Track.h"
-#import "../CustomUI/TrackCustomTableCell.h"
-#import "../CustomUI/ArtistPlaylistHeaderView.h"
-#import "../../Constants.h"
+#import "WebRequestHandler.h"
+#import "Track.h"
+#import "TrackCustomTableCell.h"
+#import "ArtistPlaylistHeaderView.h"
+#import "Constants.h"
+#import "ContextViewController.h"
 
 @interface PlaylistDetailViewController ()
 
@@ -122,11 +123,29 @@
         cell = [[TrackCustomTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:trackCellIdentifier];
     }
     
+    cell.delegate = self;
     cell.titleLabel.text = currentTrack.title;
+    cell.artistNameLabel.text = currentTrack.artist.name;
     
     return cell;
 }
 
-#pragma mark <UIViewControllerPreviewingDelegate>
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSDictionary *userInfo = @{@"trackList":self.trackList, @"currentTrackIndex":[NSNumber numberWithInteger:indexPath.row]};
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"PlayTrack" object:nil userInfo:userInfo];
+    
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (void)displayOptions:(UITableViewCell *)cell
+{
+    ContextViewController *alertController = [[ContextViewController alloc] init];
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    alertController.artist = [self.trackList[indexPath.row] artist];
+    alertController.album = [self.trackList[indexPath.row] album];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
+}
 
 @end

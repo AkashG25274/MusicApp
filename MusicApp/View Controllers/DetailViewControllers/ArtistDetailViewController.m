@@ -7,15 +7,16 @@
 //
 
 #import "ArtistDetailViewController.h"
-#import "../CustomUI/ArtistPlaylistHeaderView.h"
-#import "../../Network Controllers/WebRequestHandler.h"
+#import "ArtistPlaylistHeaderView.h"
+#import "WebRequestHandler.h"
 #import "ArtistDetailsTabBarController.h"
-#import "../../Constants.h"
+#import "Constants.h"
 
 @interface ArtistDetailViewController ()
 
 @property (strong, nonatomic) ArtistPlaylistHeaderView *headerView;
 @property (strong, nonatomic) UIView *containerView;
+@property (strong, nonatomic) ArtistDetailsTabBarController *controller;
 
 @end
 
@@ -28,8 +29,6 @@
     if(self)
     {
         self.artist = [[Artist alloc] init];
-        self.trackList = [[NSArray alloc] init];
-        self.albums = [[NSArray alloc] init];
     }
     
     return self;
@@ -51,18 +50,19 @@
     self.containerView.backgroundColor = UIColor.whiteColor;
     [self.view addSubview:self.containerView];
 
-    UITabBarController *controller = [[ArtistDetailsTabBarController alloc] init];
-    [self addChildViewController:controller];
-    [controller.view setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [self.containerView addSubview:controller.view];
-    [controller didMoveToParentViewController:self];
+    self.controller = [[ArtistDetailsTabBarController alloc] init];
+    self.controller.trackURL = self.artist.trackListUrl;
+    [self addChildViewController:self.controller];
+    [self.controller.view setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.containerView addSubview:self.controller.view];
+    [self.controller didMoveToParentViewController:self];
     
     [self setUpConstraints];
     [self.headerView setUpConstraints];
     
-    [self.containerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[controllerView(==superView)]" options:0 metrics:nil views:@{@"controllerView":controller.view, @"superView":self.containerView}]];
+    [self.containerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[controllerView(==superView)]" options:0 metrics:nil views:@{@"controllerView":self.controller.view, @"superView":self.containerView}]];
     
-    [self.containerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[controllerView(==superView)]" options:0 metrics:nil views:@{@"controllerView":controller.view, @"superView":self.containerView}]];
+    [self.containerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[controllerView(==superView)]" options:0 metrics:nil views:@{@"controllerView":self.controller.view, @"superView":self.containerView}]];
     
     [self setUpViewsForHeaderView];
 }

@@ -1,8 +1,8 @@
 //
-//  MainTabBarController.h
+//  MainViewController.h
 //  MusicApp
 //
-//  Created by mmt on 16/07/20.
+//  Created by mmt on 20/07/20.
 //  Copyright © 2020 mmt. All rights reserved.
 //
 
@@ -10,7 +10,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MainTabBarController : UITabBarController
+@interface MainViewController : UIViewController
+
+- (void)setUpConstraints;
 
 @end
 

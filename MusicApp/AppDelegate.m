@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "View Controllers/MainTabBarController.h"
+#import "View Controllers/MainViewController.h"
 
 @interface AppDelegate ()
 
@@ -15,14 +16,14 @@
 
 @implementation AppDelegate
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    MainTabBarController *mainTabBarController = [[MainTabBarController alloc] init];
-    [mainTabBarController setUpConstraints];
-    [self.window setRootViewController:mainTabBarController];
+//    MainTabBarController *mainTabBarController = [[MainTabBarController alloc] init];
+    MainViewController *mainViewController = [[MainViewController alloc] init];
+    [mainViewController setUpConstraints];
+    [self.window setRootViewController:mainViewController];
     [self.window makeKeyAndVisible];
     
     return YES;

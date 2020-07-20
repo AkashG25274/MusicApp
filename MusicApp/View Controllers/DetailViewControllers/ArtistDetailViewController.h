@@ -14,8 +14,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ArtistDetailViewController : UIViewController
 
 @property (strong, nonatomic) Artist *artist;
-@property (strong, nonatomic) NSArray *trackList;
-@property (strong, nonatomic) NSArray *albums;
 
 @end
 

@@ -29,8 +29,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) Artist *artist;
 @property (strong, nonatomic) Album *album;
 
-//- (id)initWith:(NSString *)title duration:(int)duration andTrackUrl:(NSString *)trackUrl;
-
 @end
 
 NS_ASSUME_NONNULL_END

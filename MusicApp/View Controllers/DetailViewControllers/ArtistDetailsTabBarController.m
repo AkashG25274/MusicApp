@@ -24,6 +24,7 @@
     if(self)
     {
         TrackViewController *trackViewController = [[TrackViewController alloc] init];
+        trackViewController.trackURL = self.trackURL;
         UINavigationController *trackTabNavigationController = [[UINavigationController alloc] initWithRootViewController:trackViewController];
         trackTabNavigationController.tabBarItem.title = trackTabBarTitle;
         [trackTabNavigationController.tabBarItem setTitleTextAttributes:@{NSFontAttributeName: [UIFont boldSystemFontOfSize:15.0], NSForegroundColorAttributeName: [UIColor blueColor]} forState:UIControlStateNormal];

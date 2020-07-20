@@ -7,10 +7,12 @@
 //
 
 #import "AlbumDetailViewController.h"
-#import "../../Network Controllers/WebRequestHandler.h"
-#import "../CustomUI/AlbumHeaderView.h"
-#import "../../Model Classes/Track.h"
-#import "../../Constants.h"
+#import "WebRequestHandler.h"
+#import "AlbumHeaderView.h"
+#import "Track.h"
+#import "Constants.h"
+#import "TrackCustomTableCell.h"
+#import "ContextViewController.h"
 
 @interface AlbumDetailViewController ()
 
@@ -45,7 +47,7 @@
     self.tableView.tableHeaderView = self.headerView;
     self.tableView.rowHeight = 70;
     self.tableView.backgroundColor = [UIColor whiteColor];
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:trackCellIdentifier];
+    [self.tableView registerClass:[TrackCustomTableCell class] forCellReuseIdentifier:trackCellIdentifier];
     [self.view addSubview:self.tableView];
     
     [self setUpTableViewConstraints];
@@ -113,10 +115,36 @@
 {
     Track *currentTrack = self.trackList[indexPath.row];
     
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:trackCellIdentifier forIndexPath:indexPath];
-    cell.textLabel.text = currentTrack.title;
+    TrackCustomTableCell *cell = (TrackCustomTableCell *)[self.tableView dequeueReusableCellWithIdentifier:trackCellIdentifier forIndexPath:indexPath];
+    
+    if(cell == nil)
+    {
+        cell = [[TrackCustomTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:trackCellIdentifier];
+    }
+    
+    cell.delegate = self;
+    cell.titleLabel.text = currentTrack.title;
+    cell.artistNameLabel.text = currentTrack.artist.name;
     
     return cell;
+}
+
+- (void)displayOptions:(UITableViewCell *)cell
+{
+    ContextViewController *alertController = [[ContextViewController alloc] init];
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    alertController.artist = [self.trackList[indexPath.row] artist];
+    alertController.album = [self.trackList[indexPath.row] album];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSDictionary *userInfo = @{@"trackList":self.trackList, @"currentTrackIndex":[NSNumber numberWithInteger:indexPath.row]};
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"PlayTrack" object:nil userInfo:userInfo];
+    
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 @end
