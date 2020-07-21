@@ -58,9 +58,11 @@
         self.progressView.trackTintColor = UIColor.lightGrayColor;
         [self addSubview: self.progressView];
         
-        self.trackList = [[NSArray alloc] init];
+        self.playbackController = [PlaybackController sharedHandler];
+        self.playbackController.delegate = self;
+//        self.trackList = [[NSArray alloc] init];
         
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receieveTrack:) name:@"PlayTrack" object:nil];
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receieveTrack:) name:@"PlayTrack" object:nil];
     }
     
     return self;
@@ -84,18 +86,31 @@
     
 }
 
-- (void)receieveTrack:(NSNotification *)notification
+//- (void)receieveTrack:(NSNotification *)notification
+//{
+//    NSDictionary *userInfo = notification.userInfo;
+//    self.trackList = userInfo[@"trackList"];
+//    self.currentTrackIndex = [userInfo[@"currentTrackIndex"] intValue];
+//    
+//    [self initiatePlayback];
+//}
+
+#pragma mark <PlayDelegate>
+
+- (void)sendTrackTitle:(NSString *)title
 {
-    NSDictionary *userInfo = notification.userInfo;
-    self.trackList = userInfo[@"trackList"];
-    self.currentTrackIndex = [userInfo[@"currentTrackIndex"] intValue];
-    
-    [self initiatePlayback];
+    self.titleLabel.text = title;
+}
+
+- (void)startUpdatingProgressBar
+{
+    [self startTimer];
 }
 
 - (void)playMusic
 {
-    [self.audioPlayer play];
+    [self.playbackController playMusic];
+//    [self.audioPlayer play];
     [self startTimer];
     self.playButton.enabled = NO;
     self.pauseButton.enabled = YES;
@@ -103,7 +118,8 @@
 
 - (void)pauseMusic
 {
-    [self.audioPlayer pause];
+    [self.playbackController pauseMusic];
+//    [self.audioPlayer pause];
     [self stopTimer];
     self.playButton.enabled = YES;
     self.pauseButton.enabled = NO;
@@ -111,7 +127,8 @@
 
 - (void)forwardMusic
 {
-    self.audioPlayer.currentTime += 5;
+    [self.playbackController forwardMusic];
+//    self.audioPlayer.currentTime += 5;
     
     self.playButton.enabled = NO;
     self.pauseButton.enabled = YES;
@@ -119,15 +136,17 @@
 
 - (void)rewindMusic
 {
-    if(self.audioPlayer.currentTime <= 5)
+    if( [self.playbackController musicJustStarted] )
     {
         self.progressView.progress = 0;
-        [self proceedToPreviousSong];
+        [self.playbackController proceedToPreviousSong];
+//        [self proceedToPreviousSong];
     }
     else
     {
         self.progressView.progress = 0.0;
-        [self initiatePlayback];
+        [self.playbackController initiatePlayback];
+//        [self initiatePlayback];
     }
     
     self.playButton.enabled = NO;
@@ -136,74 +155,75 @@
 
 - (void)updateProgress
 {
-    float normalizedTime = (float)((double)self.audioPlayer.currentTime / ((double)self.audioPlayer.duration));
+    float normalizedTime = [self.playbackController getNormalizedTime];//(float)((double)self.audioPlayer.currentTime / ((double)self.audioPlayer.duration));
     self.progressView.progress = normalizedTime;
     
     if(self.progressView.progress >= 1)
     {
         self.progressView.progress = 0;
-        [self proceedToNextSong];
+        [self.playbackController proceedToNextSong];
     }
 }
 
-- (void)initiatePlayback
-{
-    Track *track = self.trackList[self.currentTrackIndex];
-    self.titleLabel.text = track.title;
-    NSURL *url = [NSURL URLWithString:track.trackUrl];
-    NSData *data = [NSData dataWithContentsOfURL:url];
-    NSError *error;
-    self.audioPlayer = [[AVAudioPlayer alloc] initWithData:data error:&error];
-    self.audioPlayer.delegate = self;
-    
-    
-    if(error)
-    {
-        NSLog(@"Error:%@",error.description);
-    }
-
-    self.audioPlayer.numberOfLoops = 0;
-    [self.audioPlayer prepareToPlay];
-    [self.audioPlayer play];
-    
-    self.playButton.enabled = NO;
-    self.pauseButton.enabled = YES;
-    self.fastForwardButton.enabled = YES;
-    self.rewindButton.enabled = YES;
-    
-    [self startTimer];
-}
+//- (void)initiatePlayback
+//{
+//    Track *track = self.trackList[self.currentTrackIndex];
+//    self.titleLabel.text = track.title;
+//    NSURL *url = [NSURL URLWithString:track.trackUrl];
+//    NSData *data = [NSData dataWithContentsOfURL:url];
+//    NSError *error;
+//    self.audioPlayer = [[AVAudioPlayer alloc] initWithData:data error:&error];
+//    self.audioPlayer.delegate = self;
+//
+//
+//    if(error)
+//    {
+//        NSLog(@"Error:%@",error.description);
+//    }
+//
+//    self.audioPlayer.numberOfLoops = 0;
+//    [self.audioPlayer prepareToPlay];
+//    [self.audioPlayer play];
+//
+//    self.playButton.enabled = NO;
+//    self.pauseButton.enabled = YES;
+//    self.fastForwardButton.enabled = YES;
+//    self.rewindButton.enabled = YES;
+//
+//    [self startTimer];
+//}
 
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
 {
-    [self proceedToNextSong];
+    [self.playbackController proceedToNextSong];
+//    [self proceedToNextSong];
 }
 
-- (void)proceedToNextSong
-{
-    self.currentTrackIndex += 1;
-    
-    if(self.currentTrackIndex == self.trackList.count)
-    {
-        self.currentTrackIndex = 0;
-    }
-    
-    [self initiatePlayback];
-}
+//- (void)proceedToNextSong
+//{
+//    self.currentTrackIndex += 1;
+//
+//    if(self.currentTrackIndex == self.trackList.count)
+//    {
+//        self.currentTrackIndex = 0;
+//    }
+//
+//    [self initiatePlayback];
+//}
 
-- (void)proceedToPreviousSong
-{
-    if(self.currentTrackIndex == 0)
-    {
-        self.currentTrackIndex = (int)self.trackList.count -1;
-    }
-    else
-    {
-        self.currentTrackIndex -= 1;
-    }
-    
-    [self initiatePlayback];
-}
+//- (void)proceedToPreviousSong
+//{
+//    if(self.currentTrackIndex == 0)
+//    {
+//        self.currentTrackIndex = (int)self.trackList.count -1;
+//    }
+//    else
+//    {
+//        self.currentTrackIndex -= 1;
+//    }
+//
+//    [self initiatePlayback];
+//}
 
 - (void)startTimer
 {

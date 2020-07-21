@@ -7,11 +7,11 @@
 //
 
 #import "PlaylistsViewController.h"
-#import "./CustomUI/AlbumCustomCollectionViewCell.h"
-#import "../Model Classes/Playlist.h"
-#import "../Network Controllers/WebRequestHandler.h"
-#import "./DetailViewControllers/PlaylistDetailViewController.h"
-#import "../Constants.h"
+#import "AlbumCustomCollectionViewCell.h"
+#import "Playlist.h"
+#import "WebRequestHandler.h"
+#import "PlaylistDetailViewController.h"
+#import "Constants.h"
 
 @interface PlaylistsViewController ()
 

@@ -7,10 +7,10 @@
 //
 
 #import "ArtistsViewController.h"
-#import "../Network Controllers/WebRequestHandler.h"
-#import "./DetailViewControllers/ArtistDetailViewController.h"
-#import "../Model Classes/Artist.h"
-#import "../Constants.h"
+#import "WebRequestHandler.h"
+#import "ArtistDetailViewController.h"
+#import "Artist.h"
+#import "Constants.h"
 
 @interface ArtistsViewController ()
 

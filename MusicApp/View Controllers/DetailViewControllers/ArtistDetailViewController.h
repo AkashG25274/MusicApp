@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "../../Model Classes/Artist.h"
+#import "Artist.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

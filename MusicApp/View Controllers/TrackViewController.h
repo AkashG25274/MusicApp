@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "../Protocols/MusicDelegate.h"
+#import "MusicDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

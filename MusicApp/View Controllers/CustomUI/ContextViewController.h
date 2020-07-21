@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "../../Model Classes/Artist.h"
-#import "../../Model Classes/Album.h"
+#import "Artist.h"
+#import "Album.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <AVFoundation/AVFoundation.h>
 #import "Track.h"
+#import "PlaybackController.h"
+#import "PlaybackDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface AudioPlayerView : UIView <AVAudioPlayerDelegate>
+@interface AudioPlayerView : UIView <PlaybackDelegate>
 
 @property (strong, nonatomic) UILabel *titleLabel;
 @property (strong, nonatomic) UIButton *playButton;
@@ -20,11 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) UIButton *fastForwardButton;
 @property (strong, nonatomic) UIButton *rewindButton;
 @property (strong, nonatomic) UIProgressView *progressView;
-
-@property (strong, nonatomic) AVAudioPlayer *audioPlayer;
-@property (strong, nonatomic) NSArray *trackList;
-@property (assign) int currentTrackIndex;
 @property (strong, nonatomic) NSTimer *timer;
+@property (strong, nonatomic) PlaybackController *playbackController;
 
 - (void)setUpConstraints;
 

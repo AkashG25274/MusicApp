@@ -7,7 +7,7 @@
 //
 
 #import "MainViewController.h"
-#import "./CustomUI/AudioPlayerView.h"
+#import "AudioPlayerView.h"
 #import "MainTabBarController.h"
 
 @interface MainViewController ()

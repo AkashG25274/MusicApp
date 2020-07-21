@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "View Controllers/MainTabBarController.h"
+#import "MainTabBarController.h"
 #import "View Controllers/MainViewController.h"
 
 @interface AppDelegate ()

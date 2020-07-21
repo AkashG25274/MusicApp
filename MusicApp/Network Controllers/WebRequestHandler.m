@@ -7,11 +7,11 @@
 //
 
 #import "WebRequestHandler.h"
-#import "../Model Classes/Track.h"
-#import "../Model Classes/Album.h"
-#import "../Model Classes/Artist.h"
-#import "../Model Classes/Playlist.h"
-#import "../Constants.h"
+#import "Track.h"
+#import "Album.h"
+#import "Artist.h"
+#import "Playlist.h"
+#import "Constants.h"
 
 @implementation WebRequestHandler
 

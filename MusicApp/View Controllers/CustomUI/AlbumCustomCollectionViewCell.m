@@ -7,7 +7,7 @@
 //
 
 #import "AlbumCustomCollectionViewCell.h"
-#import "../../Constants.h"
+#import "Constants.h"
 
 @implementation AlbumCustomCollectionViewCell
 

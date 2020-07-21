@@ -11,7 +11,7 @@
 #import "AlbumsViewController.h"
 #import "ArtistsViewController.h"
 #import "PlaylistsViewController.h"
-#import "../Constants.h"
+#import "Constants.h"
 
 @interface MainTabBarController ()
 
