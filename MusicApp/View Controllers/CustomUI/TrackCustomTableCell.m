@@ -20,6 +20,8 @@
         self.titleLabel = [[UILabel alloc] init];
         [self.titleLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
         [self.titleLabel setFont:[UIFont boldSystemFontOfSize:17.0]];
+//        self.titleLabel.adjustsFontSizeToFitWidth = NO;
+//        self.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
         [self.contentView addSubview:self.titleLabel];
         
         self.artistNameLabel = [[UILabel alloc] init];
