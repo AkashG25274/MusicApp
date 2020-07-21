@@ -81,9 +81,9 @@
 - (void)setUpConstraints
 {
     NSDictionary *viewsDictionary = @{@"superView":self.view, @"scrollView":self.scrollView, @"mainContainerView":self.mainContainerView, @"headerView":self.headerView, @"containerView":self.containerView};
-        
-    NSLayoutConstraint *trailingNameTextFieldConstraints = [NSLayoutConstraint constraintWithItem:self.containerView attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.mainContainerView attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:-10.0];
-    [self.mainContainerView addConstraint:trailingNameTextFieldConstraints];
+    
+    [[self.containerView.leadingAnchor constraintEqualToAnchor:self.view.layoutMarginsGuide.leadingAnchor] setActive:YES];
+    [[self.containerView.trailingAnchor constraintEqualToAnchor:self.view.layoutMarginsGuide.trailingAnchor] setActive:YES];
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[scrollView]|" options:0 metrics:nil views:viewsDictionary]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[scrollView]|" options:0 metrics:nil views:viewsDictionary]];
@@ -92,11 +92,11 @@
     
     [self.scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[mainContainerView]|" options:0 metrics:nil views:viewsDictionary]];
     
-    [self.mainContainerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-30-[headerView(230)]-10-[containerView(600)]-|" options:0 metrics:nil views:viewsDictionary]];
+    [self.mainContainerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-30-[headerView(230)]-10-[containerView(500)]-|" options:0 metrics:nil views:viewsDictionary]];
     
     [self.mainContainerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[headerView(==mainContainerView)]" options:0 metrics:nil views:viewsDictionary]];
 
-    [self.mainContainerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[containerView(==mainContainerView)]" options:0 metrics:nil views:viewsDictionary]];
+    [self.mainContainerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[containerView]" options:0 metrics:nil views:viewsDictionary]];
 }
 
 - (void)setUpViewsForHeaderView
