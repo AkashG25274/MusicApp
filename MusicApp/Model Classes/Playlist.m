@@ -10,18 +10,4 @@
 
 @implementation Playlist
 
-//- (id)initWith:(NSString *)title imageUrl:(NSString *)imageUrl andTrackListURL:(NSString *)trackListUrl
-//{
-//    self = [super init];
-//    
-//    if(self)
-//    {
-//        self.title = title;
-//        self.imageUrl = imageUrl;
-//        self.trackListUrl = trackListUrl;
-//    }
-//    
-//    return self;
-//}
-
 @end

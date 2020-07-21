@@ -7,9 +7,9 @@
 //
 
 #import "ContextViewController.h"
-#import "../../Constants.h"
-#import "../DetailViewControllers/ArtistDetailViewController.h"
-#import "../DetailViewControllers/AlbumDetailViewController.h"
+#import "Constants.h"
+#import "ArtistDetailViewController.h"
+#import "AlbumDetailViewController.h"
 
 @interface ContextViewController ()
 
@@ -30,7 +30,7 @@
             
             ArtistDetailViewController *artistDetailViewController = [[ArtistDetailViewController alloc] init];
             artistDetailViewController.artist = self.artist;
-            [self.navigationController pushViewController:artistDetailViewController animated:YES];
+            [self presentViewController:artistDetailViewController animated:YES completion:nil];
         }];
         
         UIAlertAction *displayAlbumAction = [UIAlertAction actionWithTitle:alertAlbumAction style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {

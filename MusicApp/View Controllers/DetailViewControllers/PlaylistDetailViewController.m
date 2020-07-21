@@ -13,6 +13,8 @@
 #import "ArtistPlaylistHeaderView.h"
 #import "Constants.h"
 #import "ContextViewController.h"
+#import "ArtistDetailViewController.h"
+#import "AlbumDetailViewController.h"
 
 @interface PlaylistDetailViewController ()
 
@@ -63,6 +65,8 @@
     
     [self setUpViewsForHeaderView];
     [self setUpDataSource];
+    
+    self.navigationItem.title = self.playlist.title;
 }
 
 - (void)setUpHeaderViewConstraints
@@ -78,8 +82,13 @@
 - (void)setUpViewsForHeaderView
 {
     WebRequestHandler *requestHandler = [WebRequestHandler sharedHandler];
-    UIImage *playlistImage = [requestHandler.imageCache objectForKey:self.playlist.pictureUrl];
-    self.headerView.imageView.image = playlistImage;
+    [requestHandler downloadImageFrom:self.playlist.pictureUrl completionBlock:^(UIImage * _Nonnull playlistImage) {
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.headerView.imageView.image = playlistImage;
+        });
+    }];
+    
     self.headerView.textLabel.text = self.playlist.title;
 }
 
@@ -140,10 +149,36 @@
 
 - (void)displayOptions:(UITableViewCell *)cell
 {
-    ContextViewController *alertController = [[ContextViewController alloc] init];
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    alertController.artist = [self.trackList[indexPath.row] artist];
-    alertController.album = [self.trackList[indexPath.row] album];
+    Track *currentTrack = self.trackList[indexPath.row];
+    
+    UIAlertController *alertController = [[UIAlertController alloc] init];
+    UIAlertAction *displayArtistAction = [UIAlertAction actionWithTitle:alertArtistAction style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        ArtistDetailViewController *artistDetailViewController = [[ArtistDetailViewController alloc] init];
+        artistDetailViewController.artist = currentTrack.artist;
+        artistDetailViewController.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:artistDetailViewController animated:YES];
+    }];
+    
+    UIAlertAction *displayAlbumAction = [UIAlertAction actionWithTitle:alertAlbumAction style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        AlbumDetailViewController *albumDetailViewController = [[AlbumDetailViewController alloc] init];
+        albumDetailViewController.album = currentTrack.album;
+        albumDetailViewController.hidesBottomBarWhenPushed = YES;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.navigationController pushViewController:albumDetailViewController animated:YES];
+        });
+    }];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:alertCancelAction style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }];
+    
+    [alertController addAction:displayArtistAction];
+    [alertController addAction:displayAlbumAction];
+    [alertController addAction:cancelAction];
     
     [self presentViewController:alertController animated:YES completion:nil];
 }

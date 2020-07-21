@@ -28,8 +28,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (copy, nonatomic) NSString *type;
 @property (strong, nonatomic) Artist *artist;
 
-//- (id)initWith:(NSString *)title imageUrl:(NSString *)imageUrl andTrackList:(NSMutableArray *)trackList;
-
 @end
 
 NS_ASSUME_NONNULL_END

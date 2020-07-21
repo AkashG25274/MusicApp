@@ -37,6 +37,8 @@
     
     self.artists = [[NSArray alloc] init];
     [self setUpDataSource];
+    
+    self.navigationItem.title = @"Artists";
 }
 
 - (void)setUpConstraints

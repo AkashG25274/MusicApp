@@ -10,9 +10,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol TrackDetailsDelegate <NSObject>
+@protocol MusicDelegate <NSObject>
 
+@optional
 - (void)displayOptions:(UITableViewCell *)cell;
+- (void)displayArtist;
 
 @end
 

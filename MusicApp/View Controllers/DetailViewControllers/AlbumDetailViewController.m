@@ -13,6 +13,7 @@
 #import "Constants.h"
 #import "TrackCustomTableCell.h"
 #import "ContextViewController.h"
+#import "ArtistDetailViewController.h"
 
 @interface AlbumDetailViewController ()
 
@@ -40,6 +41,7 @@
     
     self.headerView = [[AlbumHeaderView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
     [self.headerView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    self.headerView.delegate = self;
     self.headerView.backgroundColor = UIColor.whiteColor;
     
     self.tableView = [[UITableView alloc] init];
@@ -61,6 +63,8 @@
     
     [self setUpViewsForHeaderView];
     [self setUpDataSource];
+    
+    self.navigationItem.title = self.album.title;
 }
 
 - (void)setUpHeaderViewConstraints
@@ -85,8 +89,13 @@
 - (void)setUpViewsForHeaderView
 {
     WebRequestHandler *requestHandler = [WebRequestHandler sharedHandler];
-    UIImage *albumImage = [requestHandler.imageCache objectForKey:self.album.coverImageUrl];
-    self.headerView.albumImageView.image = albumImage;
+    [requestHandler downloadImageFrom:self.album.coverImageUrl completionBlock:^(UIImage * _Nonnull albumImage) {
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.headerView.albumImageView.image = albumImage;
+        });
+    }];
+    
     self.headerView.titleLabel.text = self.album.title;
     self.headerView.artistNameLabel.text = self.album.artist.name;
 }
@@ -125,18 +134,9 @@
     cell.delegate = self;
     cell.titleLabel.text = currentTrack.title;
     cell.artistNameLabel.text = currentTrack.artist.name;
+    cell.optionsButton.hidden = YES;
     
     return cell;
-}
-
-- (void)displayOptions:(UITableViewCell *)cell
-{
-    ContextViewController *alertController = [[ContextViewController alloc] init];
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    alertController.artist = [self.trackList[indexPath.row] artist];
-    alertController.album = [self.trackList[indexPath.row] album];
-    
-    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -145,6 +145,13 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"PlayTrack" object:nil userInfo:userInfo];
     
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (void)displayArtist
+{
+    ArtistDetailViewController *artistDetailViewController = [[ArtistDetailViewController alloc] init];
+    artistDetailViewController.artist = self.album.artist;
+    [self.navigationController pushViewController:artistDetailViewController animated:YES];
 }
 
 @end

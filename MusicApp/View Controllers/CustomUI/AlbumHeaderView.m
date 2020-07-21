@@ -59,7 +59,10 @@
 
 - (void)displayArtist:(UIButton *)button
 {
-    
+    if([self.delegate respondsToSelector:@selector(displayArtist)])
+    {
+        [self.delegate displayArtist];
+    }
 }
 
 @end

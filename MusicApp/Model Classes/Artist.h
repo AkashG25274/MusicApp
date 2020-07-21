@@ -25,8 +25,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (assign) int position;
 @property (copy, nonatomic) NSString *type;
 
-//- (id)initWith:(NSString *)name andImageUrl:(NSString *)imageUrl;
-
 @end
 
 NS_ASSUME_NONNULL_END

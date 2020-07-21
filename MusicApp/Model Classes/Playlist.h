@@ -27,8 +27,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) NSString *creationDate;
 @property (copy, nonatomic) NSString *type;
 
-//- (id)initWith:(NSString *)title imageUrl:(NSString *)imageUrl andTrackListURL:(NSString *)trackListUrl;
-
 @end
 
 NS_ASSUME_NONNULL_END

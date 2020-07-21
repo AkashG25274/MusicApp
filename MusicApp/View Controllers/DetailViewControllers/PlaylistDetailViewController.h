@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "Playlist.h"
-#import "TrackDetailsDelegate.h"
+#import "MusicDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PlaylistDetailViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, TrackDetailsDelegate>
+@interface PlaylistDetailViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, MusicDelegate>
 
 @property (strong, nonatomic) Playlist *playlist;
 

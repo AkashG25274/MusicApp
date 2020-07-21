@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "../Protocols/TrackDetailsDelegate.h"
+#import "../Protocols/MusicDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface TrackViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, TrackDetailsDelegate>
+@interface TrackViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, MusicDelegate>
 
 @property (copy, nonatomic) NSString *trackURL;
 

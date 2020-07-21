@@ -25,9 +25,11 @@
     
     if(self)
     {
+        self.view.backgroundColor = UIColor.whiteColor;
+        
         self.containerView = [[UIView alloc] init];
         [self.containerView setTranslatesAutoresizingMaskIntoConstraints:NO];
-        self.containerView.backgroundColor = UIColor.blueColor;
+        self.containerView.backgroundColor = UIColor.whiteColor;
         [self.view addSubview:self.containerView];
         
         self.playbackView = [[AudioPlayerView alloc] init];
@@ -57,11 +59,14 @@
 {
     NSDictionary *viewsDictionary = @{@"superview":self.view, @"containerView":self.containerView, @"playbackView":self.playbackView};
     
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[containerView][playbackView(100)]-10-|" options:0 metrics:nil views:viewsDictionary]];
+    [[self.playbackView.leadingAnchor constraintEqualToAnchor:self.view.layoutMarginsGuide.leadingAnchor] setActive:YES];
+    [[self.playbackView.trailingAnchor constraintEqualToAnchor:self.view.layoutMarginsGuide.trailingAnchor] setActive:YES];
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[containerView]-5-[playbackView(100)]-10-|" options:0 metrics:nil views:viewsDictionary]];
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[containerView(==superview)]|" options:0 metrics:nil views:viewsDictionary]];
     
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[playbackView(==superview)]|" options:0 metrics:nil views:viewsDictionary]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[playbackView]" options:0 metrics:nil views:viewsDictionary]];
     
     [self.playbackView setUpConstraints];
 }

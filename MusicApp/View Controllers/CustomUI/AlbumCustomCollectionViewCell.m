@@ -30,7 +30,7 @@
         
         NSDictionary *viewsDictionary = @{albumImageView:self.albumImageView, albumTitleLabel:self.albumTitleLabel};
         
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[albumImageView]-10-[albumTitleLabel]-10-|" options:0 metrics:nil views:viewsDictionary]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[albumImageView(100)]-10-[albumTitleLabel]-10-|" options:0 metrics:nil views:viewsDictionary]];
         
         [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[albumImageView]-10-|" options:0 metrics:nil views:viewsDictionary]];
         

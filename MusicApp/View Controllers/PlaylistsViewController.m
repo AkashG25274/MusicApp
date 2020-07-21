@@ -32,6 +32,7 @@
     [self.collectionView setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.collectionView registerClass:[AlbumCustomCollectionViewCell class] forCellWithReuseIdentifier:albumCellIdentifier];
     self.collectionView.backgroundColor = [UIColor whiteColor];
+    self.collectionView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentAlways;
     [self.view addSubview:self.collectionView];
     
     [self setUpConstraints];
@@ -43,6 +44,8 @@
     [self.collectionView setDelegate:self];
     
     [self setUpDataSource];
+    
+    self.navigationItem.title = @"Playlists";
 }
 
 - (void)setUpConstraints
@@ -103,6 +106,7 @@
 {
     PlaylistDetailViewController *playlistDetailViewController = [[PlaylistDetailViewController alloc] init];
     playlistDetailViewController.playlist = self.playlists[indexPath.row];
+    playlistDetailViewController.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:playlistDetailViewController animated:YES];
 }
 
@@ -112,9 +116,22 @@
 {
     int itemsPerRow = 2;
     double paddingSpace = self.sectionInsets.left * (itemsPerRow + 1);
-    double availableWidth = self.view.frame.size.width - paddingSpace;
+    double availableWidth;
+    
+    double width = self.view.frame.size.width;
+    double height = self.view.frame.size.height;
+    
+    if(width < height)
+    {
+        availableWidth = width - paddingSpace;
+    }
+    else
+    {
+        availableWidth = height - paddingSpace;
+    }
+    
     double widthPerItem = availableWidth / itemsPerRow;
-    return CGSizeMake(widthPerItem, widthPerItem);
+    return CGSizeMake(widthPerItem, 150);
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section

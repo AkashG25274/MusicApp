@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "Album.h"
-#import "TrackDetailsDelegate.h"
+#import "MusicDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface AlbumDetailViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, TrackDetailsDelegate>
+@interface AlbumDetailViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, MusicDelegate>
 
 @property (strong, nonatomic) Album *album;
 

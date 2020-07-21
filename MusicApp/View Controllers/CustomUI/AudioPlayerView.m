@@ -24,14 +24,14 @@
         
         self.playButton = [[UIButton alloc] init];
         [self.playButton setTranslatesAutoresizingMaskIntoConstraints:NO];
-        [self.playButton setImage:[UIImage imageNamed:@"playImage"] forState:UIControlStateNormal];
+        [self.playButton setImage:[UIImage imageNamed:@"playMusicIcon"] forState:UIControlStateNormal];
         [self.playButton addTarget:self action:@selector(playMusic) forControlEvents:UIControlEventTouchUpInside];
         self.playButton.enabled = NO;
         [self addSubview:self.playButton];
         
         self.pauseButton = [[UIButton alloc] init];
         [self.pauseButton setTranslatesAutoresizingMaskIntoConstraints:NO];
-        [self.pauseButton setImage:[UIImage imageNamed:@"pauseImage"] forState:UIControlStateNormal];
+        [self.pauseButton setImage:[UIImage imageNamed:@"pauseMusicIcon"] forState:UIControlStateNormal];
         [self.pauseButton addTarget:self action:@selector(pauseMusic) forControlEvents:UIControlEventTouchUpInside];
         self.pauseButton.enabled = NO;
         [self addSubview:self.pauseButton];

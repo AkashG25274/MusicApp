@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MusicDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -16,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) UILabel *titleLabel;
 @property (strong, nonatomic) UILabel *artistNameLabel;
 @property (strong, nonatomic) UIButton *seeArtistButton;
+@property (strong, nonatomic) id <MusicDelegate> delegate;
 
 - (void)setUpConstraints;
 
