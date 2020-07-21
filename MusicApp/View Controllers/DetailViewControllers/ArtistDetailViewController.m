@@ -50,8 +50,8 @@
     self.containerView.backgroundColor = UIColor.whiteColor;
     [self.view addSubview:self.containerView];
 
-    self.controller = [[ArtistDetailsTabBarController alloc] init];
-    self.controller.trackURL = self.artist.trackListUrl;
+    self.controller = [[ArtistDetailsTabBarController alloc] initWith:self.artist.trackListUrl andAlbumUrl:@""];
+//    self.controller.trackURL = self.artist.trackListUrl;
     [self addChildViewController:self.controller];
     [self.controller.view setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.containerView addSubview:self.controller.view];

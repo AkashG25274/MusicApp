@@ -96,6 +96,7 @@
 - (void)playMusic
 {
     [self.audioPlayer play];
+    [self startTimer];
     self.playButton.enabled = NO;
     self.pauseButton.enabled = YES;
 }
@@ -103,7 +104,7 @@
 - (void)pauseMusic
 {
     [self.audioPlayer pause];
-    [self.timer invalidate];
+    [self stopTimer];
     self.playButton.enabled = YES;
     self.pauseButton.enabled = NO;
 }
@@ -118,16 +119,19 @@
 
 - (void)rewindMusic
 {
-    self.progressView.progress = 0.0;
-    self.playButton.enabled = NO;
-    self.pauseButton.enabled = YES;
-    
-    if((self.progressView.progress == 0.0) && (self.currentTrackIndex > 0))
+    if(self.audioPlayer.currentTime <= 5)
     {
-        self.currentTrackIndex -= 1;
+        self.progressView.progress = 0;
+        [self proceedToPreviousSong];
+    }
+    else
+    {
+        self.progressView.progress = 0.0;
+        [self initiatePlayback];
     }
     
-    [self initiatePlayback];
+    self.playButton.enabled = NO;
+    self.pauseButton.enabled = YES;
 }
 
 - (void)updateProgress
@@ -137,7 +141,8 @@
     
     if(self.progressView.progress >= 1)
     {
-        [self.timer invalidate];
+        self.progressView.progress = 0;
+        [self proceedToNextSong];
     }
 }
 
@@ -166,16 +171,50 @@
     self.fastForwardButton.enabled = YES;
     self.rewindButton.enabled = YES;
     
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(updateProgress) userInfo:nil repeats:true];
+    [self startTimer];
 }
 
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
 {
+    [self proceedToNextSong];
+}
+
+- (void)proceedToNextSong
+{
     self.currentTrackIndex += 1;
     
-    if(self.currentTrackIndex < self.trackList.count)
+    if(self.currentTrackIndex == self.trackList.count)
     {
-        [self initiatePlayback];
+        self.currentTrackIndex = 0;
+    }
+    
+    [self initiatePlayback];
+}
+
+- (void)proceedToPreviousSong
+{
+    if(self.currentTrackIndex == 0)
+    {
+        self.currentTrackIndex = (int)self.trackList.count -1;
+    }
+    else
+    {
+        self.currentTrackIndex -= 1;
+    }
+    
+    [self initiatePlayback];
+}
+
+- (void)startTimer
+{
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(updateProgress) userInfo:nil repeats:true];
+}
+
+- (void)stopTimer
+{
+    if(self.timer.isValid)
+    {
+        [self.timer invalidate];
     }
 }
 

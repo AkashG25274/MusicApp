@@ -12,8 +12,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ArtistDetailsTabBarController : UITabBarController
 
-@property (strong, nonatomic) NSString *trackURL;
-@property (strong, nonatomic) NSString *albumURL;
+@property (copy, nonatomic) NSString *trackURL;
+@property (copy, nonatomic) NSString *albumURL;
+
+- (id)initWith:(NSString *)trackUrl andAlbumUrl:(NSString *)albumUrl;
 
 @end
 

@@ -57,9 +57,6 @@
 {
     NSDictionary *viewsDictionary = @{@"superview":self.view, @"containerView":self.containerView, @"playbackView":self.playbackView};
     
-    [[self.view.leadingAnchor constraintEqualToAnchor:self.view.layoutMarginsGuide.leadingAnchor] setActive:YES];
-    [[self.view.trailingAnchor constraintEqualToAnchor:self.view.layoutMarginsGuide.trailingAnchor] setActive:YES];
-    
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[containerView][playbackView(100)]-10-|" options:0 metrics:nil views:viewsDictionary]];
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[containerView(==superview)]|" options:0 metrics:nil views:viewsDictionary]];

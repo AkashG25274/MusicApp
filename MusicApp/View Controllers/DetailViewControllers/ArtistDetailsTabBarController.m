@@ -7,9 +7,9 @@
 //
 
 #import "ArtistDetailsTabBarController.h"
-#import "../../View Controllers/TrackViewController.h"
-#import "../../View Controllers/AlbumsViewController.h"
-#import "../../Constants.h"
+#import "TrackViewController.h"
+#import "AlbumsViewController.h"
+#import "Constants.h"
 
 @interface ArtistDetailsTabBarController ()
 
@@ -17,24 +17,50 @@
 
 @implementation ArtistDetailsTabBarController
 
-- (id)init
+//- (id)init
+//{
+//    self = [super init];
+//
+//    if(self)
+//    {
+//        TrackViewController *trackViewController = [[TrackViewController alloc] init];
+//        trackViewController.trackURL = self.trackURL;
+//        UINavigationController *trackTabNavigationController = [[UINavigationController alloc] initWithRootViewController:trackViewController];
+//        trackTabNavigationController.tabBarItem.title = trackTabBarTitle;
+//        [trackTabNavigationController.tabBarItem setTitleTextAttributes:@{NSFontAttributeName: [UIFont boldSystemFontOfSize:15.0], NSForegroundColorAttributeName: [UIColor blueColor]} forState:UIControlStateNormal];
+//
+//        AlbumsViewController *albumsViewController = [[AlbumsViewController alloc] init];
+//        UINavigationController *albumsTabNavigationController = [[UINavigationController alloc] initWithRootViewController:albumsViewController];
+//        albumsTabNavigationController.tabBarItem.title = albumTabBarTitle;
+//        [albumsTabNavigationController.tabBarItem setTitleTextAttributes:@{NSFontAttributeName: [UIFont boldSystemFontOfSize:15.0], NSForegroundColorAttributeName: [UIColor blueColor]} forState:UIControlStateNormal];
+//
+//        self.viewControllers = @[trackTabNavigationController, albumsTabNavigationController];
+//    }
+//
+//    return self;
+//}
+
+- (id)initWith:(NSString *)trackUrl andAlbumUrl:(NSString *)albumUrl
 {
     self = [super init];
-
+    
     if(self)
     {
+        self.trackURL = trackUrl;
+        self.albumURL = albumUrl;
+    
         TrackViewController *trackViewController = [[TrackViewController alloc] init];
         trackViewController.trackURL = self.trackURL;
         UINavigationController *trackTabNavigationController = [[UINavigationController alloc] initWithRootViewController:trackViewController];
-        trackTabNavigationController.tabBarItem.title = trackTabBarTitle;
-        [trackTabNavigationController.tabBarItem setTitleTextAttributes:@{NSFontAttributeName: [UIFont boldSystemFontOfSize:15.0], NSForegroundColorAttributeName: [UIColor blueColor]} forState:UIControlStateNormal];
-        
-        AlbumsViewController *albumsViewController = [[AlbumsViewController alloc] init];
-        UINavigationController *albumsTabNavigationController = [[UINavigationController alloc] initWithRootViewController:albumsViewController];
-        albumsTabNavigationController.tabBarItem.title = albumTabBarTitle;
-        [albumsTabNavigationController.tabBarItem setTitleTextAttributes:@{NSFontAttributeName: [UIFont boldSystemFontOfSize:15.0], NSForegroundColorAttributeName: [UIColor blueColor]} forState:UIControlStateNormal];
-        
-        self.viewControllers = @[trackTabNavigationController, albumsTabNavigationController];
+    trackTabNavigationController.tabBarItem.title = trackTabBarTitle;
+    [trackTabNavigationController.tabBarItem setTitleTextAttributes:@{NSFontAttributeName: [UIFont boldSystemFontOfSize:15.0], NSForegroundColorAttributeName: [UIColor blueColor]} forState:UIControlStateNormal];
+    
+    AlbumsViewController *albumsViewController = [[AlbumsViewController alloc] init];
+    UINavigationController *albumsTabNavigationController = [[UINavigationController alloc] initWithRootViewController:albumsViewController];
+    albumsTabNavigationController.tabBarItem.title = albumTabBarTitle;
+    [albumsTabNavigationController.tabBarItem setTitleTextAttributes:@{NSFontAttributeName: [UIFont boldSystemFontOfSize:15.0], NSForegroundColorAttributeName: [UIColor blueColor]} forState:UIControlStateNormal];
+    
+    self.viewControllers = @[trackTabNavigationController, albumsTabNavigationController];
     }
     
     return self;
