@@ -37,7 +37,6 @@
         [self.seeArtistButton setTranslatesAutoresizingMaskIntoConstraints:NO];
         [self.seeArtistButton setTitle:seeArtist forState:UIControlStateNormal];
         [self.seeArtistButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//        [self.seeArtistButton addTarget:self action:@selector(displayArtist:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:self.seeArtistButton];
     }
     

@@ -7,7 +7,6 @@
 //
 
 #import "ArtistDetailViewController.h"
-#import "ArtistPlaylistHeaderView.h"
 #import "WebRequestHandler.h"
 #import "ArtistDetailsTabBarController.h"
 #import "Constants.h"
@@ -92,7 +91,7 @@
     
     [self.scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[mainContainerView]|" options:0 metrics:nil views:viewsDictionary]];
     
-    [self.mainContainerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-30-[headerView(230)]-10-[containerView(500)]-|" options:0 metrics:nil views:viewsDictionary]];
+    [self.mainContainerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-30-[headerView(270)][containerView(500)]-|" options:0 metrics:nil views:viewsDictionary]];
     
     [self.mainContainerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[headerView(==mainContainerView)]" options:0 metrics:nil views:viewsDictionary]];
 

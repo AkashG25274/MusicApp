@@ -13,30 +13,10 @@
 
 - (id)init
 {
-//    self = [super initWithFrame:frame];
     self = [super init];
     
     if (self)
     {
-//        self.albumImageView = [[UIImageView alloc] init];
-//        [self.albumImageView setTranslatesAutoresizingMaskIntoConstraints:NO];
-//        [self.albumImageView setContentMode:UIViewContentModeScaleAspectFit];
-//        [self addSubview:self.albumImageView];
-//
-//        self.titleLabel = [[UILabel alloc] init];
-//        [self.titleLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
-//        [self.titleLabel setTextAlignment:NSTextAlignmentCenter];
-//        [self addSubview:self.titleLabel];
-//
-//        self.artistNameLabel = [[UILabel alloc] init];
-//        [self.artistNameLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
-//        [self.artistNameLabel setTextAlignment:NSTextAlignmentCenter];
-//        [self addSubview:self.artistNameLabel];
-//
-//        self.seeArtistButton = [[UIButton alloc] init];
-//        [self.seeArtistButton setTranslatesAutoresizingMaskIntoConstraints:NO];
-//        [self.seeArtistButton setTitle:@"See Artist" forState:UIControlStateNormal];
-//        [self.seeArtistButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [self.seeArtistButton addTarget:self action:@selector(displayArtist:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:self.seeArtistButton];
     }
