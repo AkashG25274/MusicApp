@@ -262,4 +262,21 @@
     }
 }
 
+- (void)downloadPlaybackfrom:(NSString *)playbackUrl completionBlock:(void (^)(NSData * _Nullable))completionBlock
+{
+    NSURL *url = [NSURL URLWithString:playbackUrl];
+    NSURLSessionDataTask *imageDownloadTask = [[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+        if( data )
+        {
+            completionBlock(data);
+        }
+        else
+        {
+            completionBlock(nil);
+        }
+    }];
+    
+    [imageDownloadTask resume];
+}
 @end

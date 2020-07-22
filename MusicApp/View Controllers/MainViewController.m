@@ -9,6 +9,7 @@
 #import "MainViewController.h"
 #import "AudioPlayerView.h"
 #import "MainTabBarController.h"
+#import "Constants.h"
 
 @interface MainViewController ()
 
@@ -47,9 +48,9 @@
         [controller didMoveToParentViewController:self];
         
         
-        [self.containerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[controllerView(==superView)]" options:0 metrics:nil views:@{@"controllerView":controller.view, @"superView":self.containerView}]];
+        [self.containerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[controllerView(==superView)]" options:0 metrics:nil views:@{controllerView:controller.view, superView:self.containerView}]];
         
-        [self.containerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[controllerView(==superView)]" options:0 metrics:nil views:@{@"controllerView":controller.view, @"superView":self.containerView}]];
+        [self.containerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[controllerView(==superView)]" options:0 metrics:nil views:@{controllerView:controller.view, superView:self.containerView}]];
     }
     
     return self;
@@ -57,14 +58,14 @@
 
 - (void)setUpConstraints
 {
-    NSDictionary *viewsDictionary = @{@"superview":self.view, @"containerView":self.containerView, @"playbackView":self.playbackView};
+    NSDictionary *viewsDictionary = @{superView:self.view, containerView:self.containerView, playbackView:self.playbackView};
     
     [[self.playbackView.leadingAnchor constraintEqualToAnchor:self.view.layoutMarginsGuide.leadingAnchor] setActive:YES];
     [[self.playbackView.trailingAnchor constraintEqualToAnchor:self.view.layoutMarginsGuide.trailingAnchor] setActive:YES];
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[containerView]-5-[playbackView(100)]-10-|" options:0 metrics:nil views:viewsDictionary]];
     
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[containerView(==superview)]|" options:0 metrics:nil views:viewsDictionary]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[containerView(==superView)]|" options:0 metrics:nil views:viewsDictionary]];
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[playbackView]" options:0 metrics:nil views:viewsDictionary]];
     

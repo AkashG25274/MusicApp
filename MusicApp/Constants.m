@@ -64,6 +64,14 @@ NSString * const optionsButton = @"optionsButton";
 NSString * const superView = @"superView";
 NSString * const tableView = @"tableView";
 NSString * const collectionView = @"collectionView";
+NSString * const headerView = @"headerView";
+NSString * const scrollView = @"scrollView";
+NSString * const mainContainerView = @"mainContainerView";
+NSString * const containerView = @"containerView";
+NSString * const imageView = @"imageView";
+NSString * const seeArtistButton = @"seeArtistButton";
+NSString * const controllerView = @"controllerView";
+NSString * const playbackView = @"playbackView";
 
 NSString * const trackCellIdentifier = @"TrackCell";
 NSString * const albumCellIdentifier = @"AlbumCell";
@@ -76,9 +84,25 @@ NSString * const playlistTabBarTitle = @"Playlists";
 
 NSString * const albumDefaultImage = @"download";
 NSString * const artistDefaultImage = @"profile";
+NSString * const optionMenuImage = @"optionMenu";
+NSString * const playImage = @"playMusicIcon";
+NSString * const pauseImage = @"pauseMusicIcon";
+NSString * const fastForwardImage = @"fastforwardImage";
+NSString * const rewindImage = @"rewindImage";
+
+NSString * const playButton = @"playButton";
+NSString * const pauseButton = @"pauseButton";
+NSString * const fastForwardButton = @"fastForwardButton";
+NSString * const rewindButton = @"rewindButton";
+NSString * const progressView = @"progressView";
+
+NSString * const seeArtist = @"See Artist";
 
 NSString * const alertArtistAction = @"See Artist";
 NSString * const alertAlbumAction = @"See Album";
 NSString * const alertCancelAction = @"Cancel";
+
+NSString * const playTrack = @"PlayTrack";
+NSString * const currentTrackIndex = @"currentTrackIndex";
 
 @end

@@ -44,7 +44,7 @@
     
     [self setUpDataSource];
     
-    self.navigationItem.title = @"Albums";
+    self.navigationItem.title = albumTabBarTitle;
 }
 
 - (void)setUpConstraints

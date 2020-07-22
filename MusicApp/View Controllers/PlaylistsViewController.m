@@ -45,7 +45,7 @@
     
     [self setUpDataSource];
     
-    self.navigationItem.title = @"Playlists";
+    self.navigationItem.title = playlistTabBarTitle;
 }
 
 - (void)setUpConstraints

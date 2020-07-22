@@ -15,12 +15,13 @@
 #import "ContextViewController.h"
 #import "ArtistDetailViewController.h"
 #import "AlbumDetailViewController.h"
+#import "AlbumHeaderView.h"
 
 @interface PlaylistDetailViewController ()
 
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) NSArray *trackList;
-@property (strong, nonatomic) ArtistPlaylistHeaderView *headerView;
+@property (strong, nonatomic) AlbumHeaderView *headerView;
 
 @end
 
@@ -42,7 +43,7 @@
     
     self.view.backgroundColor = UIColor.whiteColor;
     
-    self.headerView = [[ArtistPlaylistHeaderView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+    self.headerView = [[AlbumHeaderView alloc] init];
     [self.headerView setTranslatesAutoresizingMaskIntoConstraints:NO];
     self.headerView.backgroundColor = UIColor.whiteColor;
     
@@ -90,11 +91,13 @@
     }];
     
     self.headerView.textLabel.text = self.playlist.title;
+    self.headerView.artistNameLabel.hidden = YES;
+    self.headerView.seeArtistButton.hidden = YES;
 }
 
 - (void)setUpTableViewConstraints
 {
-    NSDictionary *viewsDictionary = @{superView:self.view, @"headerView":self.headerView, tableView:self.tableView};
+    NSDictionary *viewsDictionary = @{superView:self.view, headerView:self.headerView, tableView:self.tableView};
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[tableView(==superView)]|" options:0 metrics:nil views:viewsDictionary]];
     
@@ -141,8 +144,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSDictionary *userInfo = @{@"trackList":self.trackList, @"currentTrackIndex":[NSNumber numberWithInteger:indexPath.row]};
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"PlayTrack" object:nil userInfo:userInfo];
+    NSDictionary *userInfo = @{trackList:self.trackList, currentTrackIndex:[NSNumber numberWithInteger:indexPath.row]};
+    [[NSNotificationCenter defaultCenter] postNotificationName:playTrack object:nil userInfo:userInfo];
     
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

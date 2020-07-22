@@ -20,7 +20,6 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-//    MainTabBarController *mainTabBarController = [[MainTabBarController alloc] init];
     MainViewController *mainViewController = [[MainViewController alloc] init];
     [mainViewController setUpConstraints];
     [self.window setRootViewController:mainViewController];

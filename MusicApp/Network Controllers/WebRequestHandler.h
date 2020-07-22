@@ -21,6 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)getArtists:(void(^)(NSArray *))completionBlock;
 - (void)getPlaylists:(void(^)(NSArray *))completionBlock;
 - (void)downloadImageFrom:(NSString *)imageUrl completionBlock:(void(^)(UIImage *))completionBlock;
+- (void)downloadPlaybackfrom:(NSString *)url completionBlock:(void(^)(NSData *))completionBlock;
 
 @end
 

@@ -66,6 +66,16 @@ extern NSString * const optionsButton;
 extern NSString * const superView;
 extern NSString * const tableView;
 extern NSString * const collectionView;
+extern NSString * const headerView;
+extern NSString * const scrollView;
+extern NSString * const mainContainerView;
+extern NSString * const containerView;
+extern NSString * const imageView;
+extern NSString * const titleLabel;
+extern NSString * const artistNameLabel;
+extern NSString * const seeArtistButton;
+extern NSString * const controllerView;
+extern NSString * const playbackView;
 
 extern NSString * const trackCellIdentifier;
 extern NSString * const albumCellIdentifier;
@@ -78,10 +88,26 @@ extern NSString * const playlistTabBarTitle;
 
 extern NSString * const albumDefaultImage;
 extern NSString * const artistDefaultImage;
+extern NSString * const optionMenuImage;
+extern NSString * const playImage;
+extern NSString * const pauseImage;
+extern NSString * const fastForwardImage;
+extern NSString * const rewindImage;
+
+extern NSString * const playButton;
+extern NSString * const pauseButton;
+extern NSString * const fastForwardButton;
+extern NSString * const rewindButton;
+extern NSString * const progressView;
+
+extern NSString * const seeArtist;
 
 extern NSString * const alertArtistAction;
 extern NSString * const alertAlbumAction;
 extern NSString * const alertCancelAction;
+
+extern NSString * const playTrack;
+extern NSString * const currentTrackIndex;
 
 @end
 

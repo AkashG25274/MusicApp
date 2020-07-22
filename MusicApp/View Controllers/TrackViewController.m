@@ -41,7 +41,7 @@
     self.trackList = [[NSArray alloc] init];
     
     [self setUpDataSource];
-    self.navigationItem.title = @"Tracks";
+    self.navigationItem.title = trackTabBarTitle;
 }
 
 - (void)setUpConstraints
@@ -129,8 +129,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSDictionary *userInfo = @{@"trackList":self.trackList, @"currentTrackIndex":[NSNumber numberWithInteger:indexPath.row]};
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"PlayTrack" object:nil userInfo:userInfo];
+    NSDictionary *userInfo = @{trackList:self.trackList, currentTrackIndex:[NSNumber numberWithInteger:indexPath.row]};
+    [[NSNotificationCenter defaultCenter] postNotificationName:playTrack object:nil userInfo:userInfo];
     
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

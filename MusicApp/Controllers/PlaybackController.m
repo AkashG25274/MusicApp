@@ -8,6 +8,8 @@
 
 #import "PlaybackController.h"
 #import "Track.h"
+#import "WebRequestHandler.h"
+#import "Constants.h"
 
 @implementation PlaybackController
 
@@ -34,7 +36,7 @@
     {
         self.trackList = [[NSArray alloc] init];
         
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receieveTrack:) name:@"PlayTrack" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receieveTrack:) name:playTrack object:nil];
     }
     return self;
 }
@@ -42,8 +44,8 @@
 - (void)receieveTrack:(NSNotification *)notification
 {
     NSDictionary *userInfo = notification.userInfo;
-    self.trackList = userInfo[@"trackList"];
-    self.currentTrackIndex = [userInfo[@"currentTrackIndex"] intValue];
+    self.trackList = userInfo[trackList];
+    self.currentTrackIndex = [userInfo[currentTrackIndex] intValue];
     
     [self initiatePlayback];
 }
@@ -51,17 +53,11 @@
 - (void)playMusic
 {
     [self.audioPlayer play];
-//    [self startTimer];
-    if( [self.delegate respondsToSelector:@selector(startUpdatingProgressBar)] )
-    {
-        [self.delegate startUpdatingProgressBar];
-    }
 }
 
 - (void)pauseMusic
 {
     [self.audioPlayer pause];
-    [self stopTimer];
 }
 
 - (void)forwardMusic
@@ -88,23 +84,33 @@
 - (void)initiatePlayback
 {
     Track *track = self.trackList[self.currentTrackIndex];
-//    self.titleLabel.text = track.title;
     
     if( [self.delegate respondsToSelector:@selector(sendTrackTitle:)] )
     {
         [self.delegate sendTrackTitle:track.title];
     }
     
-    NSURL *url = [NSURL URLWithString:track.trackUrl];
-    NSData *data = [NSData dataWithContentsOfURL:url];
+    WebRequestHandler *requestHandler = [WebRequestHandler sharedHandler];
+    [requestHandler downloadPlaybackfrom:track.trackUrl completionBlock:^(NSData * _Nonnull playbackData) {
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [self startPlayback:playbackData];
+            
+        });
+    }];
+}
+
+- (void)startPlayback:(NSData *)playbackData
+{
     NSError *error;
-    self.audioPlayer = [[AVAudioPlayer alloc] initWithData:data error:&error];
+    self.audioPlayer = [[AVAudioPlayer alloc] initWithData:playbackData error:&error];
     self.audioPlayer.delegate = self;
-    
     
     if(error)
     {
         NSLog(@"Error:%@",error.description);
+        return;
     }
     
     self.audioPlayer.numberOfLoops = 0;
@@ -115,8 +121,6 @@
     {
         [self.delegate startUpdatingProgressBar];
     }
-    
-//    [self startTimer];
 }
 
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
@@ -150,19 +154,9 @@
     [self initiatePlayback];
 }
 
-//- (void)startTimer
-//{
-//    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(updateProgress) userInfo:nil repeats:true];
-//}
-//
-//- (void)stopTimer
-//{
-//    if(self.timer.isValid)
-//    {
-//        [self.timer invalidate];
-//    }
-//}
-
-
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 @end

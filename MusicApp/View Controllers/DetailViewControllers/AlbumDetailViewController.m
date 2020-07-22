@@ -39,7 +39,7 @@
 {
     [super viewDidLoad];
     
-    self.headerView = [[AlbumHeaderView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+    self.headerView = [[AlbumHeaderView alloc] init];
     [self.headerView setTranslatesAutoresizingMaskIntoConstraints:NO];
     self.headerView.delegate = self;
     self.headerView.backgroundColor = UIColor.whiteColor;
@@ -92,11 +92,11 @@
     [requestHandler downloadImageFrom:self.album.coverImageUrl completionBlock:^(UIImage * _Nonnull albumImage) {
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            self.headerView.albumImageView.image = albumImage;
+            self.headerView.imageView.image = albumImage;
         });
     }];
     
-    self.headerView.titleLabel.text = self.album.title;
+    self.headerView.textLabel.text = self.album.title;
     self.headerView.artistNameLabel.text = self.album.artist.name;
 }
 
@@ -141,8 +141,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSDictionary *userInfo = @{@"trackList":self.trackList, @"currentTrackIndex":[NSNumber numberWithInteger:indexPath.row]};
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"PlayTrack" object:nil userInfo:userInfo];
+    NSDictionary *userInfo = @{trackList:self.trackList, currentTrackIndex:[NSNumber numberWithInteger:indexPath.row]};
+    [[NSNotificationCenter defaultCenter] postNotificationName:playTrack object:nil userInfo:userInfo];
     
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

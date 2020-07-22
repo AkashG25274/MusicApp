@@ -31,7 +31,7 @@
         
         self.optionsButton = [[UIButton alloc] init];
         [self.optionsButton setTranslatesAutoresizingMaskIntoConstraints:NO];
-        [self.optionsButton setImage:[UIImage imageNamed:@"optionMenu"] forState:UIControlStateNormal];
+        [self.optionsButton setImage:[UIImage imageNamed:optionMenuImage] forState:UIControlStateNormal];
         [self.optionsButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [self.optionsButton addTarget:self action:@selector(optionsTapped:) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:self.optionsButton];

@@ -11,10 +11,11 @@
 #import "WebRequestHandler.h"
 #import "ArtistDetailsTabBarController.h"
 #import "Constants.h"
+#import "AlbumHeaderView.h"
 
 @interface ArtistDetailViewController ()
 
-@property (strong, nonatomic) ArtistPlaylistHeaderView *headerView;
+@property (strong, nonatomic) AlbumHeaderView *headerView;
 @property (strong, nonatomic) UIView *containerView;
 @property (strong, nonatomic) ArtistDetailsTabBarController *controller;
 @property (strong, nonatomic) UIScrollView *scrollView;
@@ -48,11 +49,10 @@
     [self.mainContainerView setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.scrollView addSubview:self.mainContainerView];
     
-    self.headerView = [[ArtistPlaylistHeaderView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+    self.headerView = [[AlbumHeaderView alloc] init];
     [self.headerView setTranslatesAutoresizingMaskIntoConstraints:NO];
     self.headerView.backgroundColor = UIColor.whiteColor;
-    self.headerView.imageView.image = [UIImage imageNamed:@"profile"];
-    self.headerView.textLabel.text = @"Artist Name";
+    self.headerView.imageView.image = [UIImage imageNamed:artistDefaultImage];
     [self.mainContainerView addSubview:self.headerView];
  
     self.containerView = [[UIView alloc] init];
@@ -80,7 +80,7 @@
 
 - (void)setUpConstraints
 {
-    NSDictionary *viewsDictionary = @{@"superView":self.view, @"scrollView":self.scrollView, @"mainContainerView":self.mainContainerView, @"headerView":self.headerView, @"containerView":self.containerView};
+    NSDictionary *viewsDictionary = @{superView:self.view, scrollView:self.scrollView, mainContainerView:self.mainContainerView, headerView:self.headerView, containerView:self.containerView};
     
     [[self.containerView.leadingAnchor constraintEqualToAnchor:self.view.layoutMarginsGuide.leadingAnchor] setActive:YES];
     [[self.containerView.trailingAnchor constraintEqualToAnchor:self.view.layoutMarginsGuide.trailingAnchor] setActive:YES];
@@ -110,6 +110,8 @@
     }];
     
     self.headerView.textLabel.text = self.artist.name;
+    self.headerView.artistNameLabel.hidden = YES;
+    self.headerView.seeArtistButton.hidden = YES;
 }
 
 @end
