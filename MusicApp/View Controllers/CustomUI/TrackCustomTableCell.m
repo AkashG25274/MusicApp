@@ -20,8 +20,6 @@
         self.titleLabel = [[UILabel alloc] init];
         [self.titleLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
         [self.titleLabel setFont:[UIFont boldSystemFontOfSize:17.0]];
-//        self.titleLabel.adjustsFontSizeToFitWidth = NO;
-//        self.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
         [self.contentView addSubview:self.titleLabel];
         
         self.artistNameLabel = [[UILabel alloc] init];
@@ -40,11 +38,13 @@
         
         [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[titleLabel]-10-[artistNameLabel]-10-|" options:0 metrics:nil views:viewsDictionary]];
         
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[optionsButton(20)]" options:0 metrics:nil views:viewsDictionary]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-25-[optionsButton]-25-|" options:NSLayoutFormatAlignAllCenterX metrics:nil views:viewsDictionary]];
         
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[titleLabel]" options:0 metrics:nil views:viewsDictionary]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[titleLabel]-50-|" options:0 metrics:nil views:viewsDictionary]];
         
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[artistNameLabel]-[optionsButton(25)]-10-|" options:NSLayoutFormatAlignAllCenterY metrics:nil views:viewsDictionary]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[optionsButton(25)]-10-|" options:0 metrics:nil views:viewsDictionary]];
+        
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[artistNameLabel]" options:0 metrics:nil views:viewsDictionary]];
     }
     
     return self;

@@ -80,6 +80,8 @@
 
 - (void)setUpViewsForHeaderView
 {
+    self.headerView.imageView.image = [UIImage imageNamed:albumDefaultImage];
+    
     WebRequestHandler *requestHandler = [WebRequestHandler sharedHandler];
     [requestHandler downloadImageFrom:self.playlist.pictureUrl completionBlock:^(UIImage * _Nonnull playlistImage) {
         

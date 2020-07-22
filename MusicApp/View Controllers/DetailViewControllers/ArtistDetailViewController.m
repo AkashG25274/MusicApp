@@ -100,6 +100,8 @@
 
 - (void)setUpViewsForHeaderView
 {
+    self.headerView.imageView.image = [UIImage imageNamed:artistDefaultImage];
+    
     WebRequestHandler *requestHandler = [WebRequestHandler sharedHandler];
     [requestHandler downloadImageFrom:self.artist.pictureUrl completionBlock:^(UIImage * _Nonnull artistImage) {
         

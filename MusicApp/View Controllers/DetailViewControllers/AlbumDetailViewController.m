@@ -87,6 +87,8 @@
 
 - (void)setUpViewsForHeaderView
 {
+    self.headerView.imageView.image = [UIImage imageNamed:albumDefaultImage];
+    
     WebRequestHandler *requestHandler = [WebRequestHandler sharedHandler];
     [requestHandler downloadImageFrom:self.album.coverImageUrl completionBlock:^(UIImage * _Nonnull albumImage) {
         
