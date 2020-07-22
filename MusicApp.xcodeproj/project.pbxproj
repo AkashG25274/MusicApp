@@ -13,7 +13,6 @@
 		C101D04E24BF2FF400781F10 /* Playlist.m in Sources */ = {isa = PBXBuildFile; fileRef = C101D04D24BF2FF400781F10 /* Playlist.m */; };
 		C101D05124BF301600781F10 /* WebRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C101D05024BF301600781F10 /* WebRequestHandler.m */; };
 		C101D05424BF303500781F10 /* MusicAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = C101D05324BF303500781F10 /* MusicAPI.m */; };
-		C10AD7B724C2B8B10095B93E /* ArtistPlaylistHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = C10AD7B624C2B8B10095B93E /* ArtistPlaylistHeaderView.m */; };
 		C11EFDA824C71E7F00B7D09A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C11EFDA724C71E7F00B7D09A /* Assets.xcassets */; };
 		C11EFDAB24C71EDD00B7D09A /* PlaybackController.m in Sources */ = {isa = PBXBuildFile; fileRef = C11EFDAA24C71EDD00B7D09A /* PlaybackController.m */; };
 		C13EF0AA24C02AA30024721C /* MainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = C13EF0A924C02AA30024721C /* MainTabBarController.m */; };
@@ -25,7 +24,6 @@
 		C181AE6124C191CA009C59A2 /* PlaylistDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C181AE6024C191CA009C59A2 /* PlaylistDetailViewController.m */; };
 		C1ACCFAA24C06814009BB242 /* AlbumCustomCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C1ACCFA924C06814009BB242 /* AlbumCustomCollectionViewCell.m */; };
 		C1E24A6C24C4524A0073E85E /* ArtistDetailsTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1E24A6B24C4524A0073E85E /* ArtistDetailsTabBarController.m */; };
-		C1E24A6F24C466C70073E85E /* ContextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1E24A6E24C466C70073E85E /* ContextViewController.m */; };
 		C1E3FB2624C4843000525205 /* AudioPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1E3FB2524C4843000525205 /* AudioPlayerView.m */; };
 		C1FCAAA424BF04B6001986DD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C1FCAAA324BF04B6001986DD /* AppDelegate.m */; };
 		C1FCAAAF24BF04B8001986DD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1FCAAAD24BF04B8001986DD /* LaunchScreen.storyboard */; };
@@ -52,8 +50,6 @@
 		C101D05224BF303500781F10 /* MusicAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MusicAPI.h; sourceTree = "<group>"; };
 		C101D05324BF303500781F10 /* MusicAPI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MusicAPI.m; sourceTree = "<group>"; };
 		C104FDDE24C1E09600B2999C /* MusicDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MusicDelegate.h; sourceTree = "<group>"; };
-		C10AD7B524C2B8B10095B93E /* ArtistPlaylistHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArtistPlaylistHeaderView.h; sourceTree = "<group>"; };
-		C10AD7B624C2B8B10095B93E /* ArtistPlaylistHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ArtistPlaylistHeaderView.m; sourceTree = "<group>"; };
 		C11EFDA724C71E7F00B7D09A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C11EFDA924C71EDD00B7D09A /* PlaybackController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlaybackController.h; sourceTree = "<group>"; };
 		C11EFDAA24C71EDD00B7D09A /* PlaybackController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlaybackController.m; sourceTree = "<group>"; };
@@ -75,8 +71,6 @@
 		C1ACCFA924C06814009BB242 /* AlbumCustomCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlbumCustomCollectionViewCell.m; sourceTree = "<group>"; };
 		C1E24A6A24C4524A0073E85E /* ArtistDetailsTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArtistDetailsTabBarController.h; sourceTree = "<group>"; };
 		C1E24A6B24C4524A0073E85E /* ArtistDetailsTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ArtistDetailsTabBarController.m; sourceTree = "<group>"; };
-		C1E24A6D24C466C70073E85E /* ContextViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContextViewController.h; sourceTree = "<group>"; };
-		C1E24A6E24C466C70073E85E /* ContextViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContextViewController.m; sourceTree = "<group>"; };
 		C1E3FB2424C4843000525205 /* AudioPlayerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioPlayerView.h; sourceTree = "<group>"; };
 		C1E3FB2524C4843000525205 /* AudioPlayerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AudioPlayerView.m; sourceTree = "<group>"; };
 		C1F0DC6624C728D500301333 /* PlaybackDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlaybackDelegate.h; sourceTree = "<group>"; };
@@ -127,12 +121,8 @@
 				C13EF0AD24C02D380024721C /* TrackCustomTableCell.m */,
 				C1ACCFA824C06814009BB242 /* AlbumCustomCollectionViewCell.h */,
 				C1ACCFA924C06814009BB242 /* AlbumCustomCollectionViewCell.m */,
-				C10AD7B524C2B8B10095B93E /* ArtistPlaylistHeaderView.h */,
-				C10AD7B624C2B8B10095B93E /* ArtistPlaylistHeaderView.m */,
 				C1FF12CB24C31D6A00A7AC47 /* AlbumHeaderView.h */,
 				C1FF12CC24C31D6A00A7AC47 /* AlbumHeaderView.m */,
-				C1E24A6D24C466C70073E85E /* ContextViewController.h */,
-				C1E24A6E24C466C70073E85E /* ContextViewController.m */,
 				C1E3FB2424C4843000525205 /* AudioPlayerView.h */,
 				C1E3FB2524C4843000525205 /* AudioPlayerView.m */,
 				C16CF50E24C7390200BD906D /* GenericHeaderView.h */,
@@ -321,13 +311,11 @@
 				C101D04524BF2FB900781F10 /* Track.m in Sources */,
 				C1FF12CA24C311AC00A7AC47 /* ArtistDetailViewController.m in Sources */,
 				C157F60C24C56BA500816ADE /* MainViewController.m in Sources */,
-				C1E24A6F24C466C70073E85E /* ContextViewController.m in Sources */,
 				C101D05124BF301600781F10 /* WebRequestHandler.m in Sources */,
 				C1FCAAC124BF1A2F001986DD /* TrackViewController.m in Sources */,
 				C101D04824BF2FD000781F10 /* Artist.m in Sources */,
 				C101D05424BF303500781F10 /* MusicAPI.m in Sources */,
 				C13EF0B124C03D500024721C /* Constants.m in Sources */,
-				C10AD7B724C2B8B10095B93E /* ArtistPlaylistHeaderView.m in Sources */,
 				C1FCAAB224BF04B8001986DD /* main.m in Sources */,
 				C1FCAAC424BF1A6A001986DD /* AlbumsViewController.m in Sources */,
 				C1FCAAA424BF04B6001986DD /* AppDelegate.m in Sources */,
