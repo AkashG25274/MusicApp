@@ -61,10 +61,13 @@
     WebRequestHandler *requestHandler = [WebRequestHandler sharedHandler];
     [requestHandler getAlbums:^(NSArray * _Nonnull albumList) {
         
-        self.albums = albumList;
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.collectionView reloadData];
-        });
+        if(albumList.count > 0)
+        {
+            self.albums = albumList;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.collectionView reloadData];
+            });
+        }
     }];
 }
 

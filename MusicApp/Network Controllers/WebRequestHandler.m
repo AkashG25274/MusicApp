@@ -103,32 +103,38 @@
     [downloadTask resume];
 }
 
-- (void)getAlbums:(void (^) (NSArray *))completionBlock
+- (void)getAlbums:(void (^) (NSArray * _Nullable))completionBlock
 {
     NSURL *url = [NSURL URLWithString:baseUrl];
     
     NSURLSessionDataTask *downloadTask = [[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData * _Nullable jsonData, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         
-        NSMutableArray *albumList = [[NSMutableArray alloc] init];
-        NSDictionary *mainJsonDictionary = [NSJSONSerialization JSONObjectWithData:jsonData options:kNilOptions error:&error];
-        NSDictionary *albumDictionary = [mainJsonDictionary objectForKey:albums];
-        NSArray *albumDetails = [albumDictionary objectForKey:data];
-        
-        for(NSDictionary *album in albumDetails)
+        if(jsonData)
         {
-            Album *newAlbum = [[Album alloc] init];
-            newAlbum = [self parseAlbumDetails:album];
+            NSMutableArray *albumList = [[NSMutableArray alloc] init];
+            NSDictionary *mainJsonDictionary = [NSJSONSerialization JSONObjectWithData:jsonData options:kNilOptions error:&error];
+            NSDictionary *albumDictionary = [mainJsonDictionary objectForKey:albums];
+            NSArray *albumDetails = [albumDictionary objectForKey:data];
             
-            NSDictionary *artistDetails = [album objectForKey:artist];
-            Artist *artistOfCurrentAlbum = [[Artist alloc] init];
-            artistOfCurrentAlbum = [self parseArtistDetails:artistDetails];
-            newAlbum.artist = artistOfCurrentAlbum;
+            for(NSDictionary *album in albumDetails)
+            {
+                Album *newAlbum = [[Album alloc] init];
+                newAlbum = [self parseAlbumDetails:album];
             
-            [albumList addObject:newAlbum];
+                NSDictionary *artistDetails = [album objectForKey:artist];
+                Artist *artistOfCurrentAlbum = [[Artist alloc] init];
+                artistOfCurrentAlbum = [self parseArtistDetails:artistDetails];
+                newAlbum.artist = artistOfCurrentAlbum;
+            
+                [albumList addObject:newAlbum];
+            }
+        
+            completionBlock(albumList);
         }
-        
-        completionBlock(albumList);
-        
+        else
+        {
+            completionBlock(nil);
+        }
     }];
     
     [downloadTask resume];

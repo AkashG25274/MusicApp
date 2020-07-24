@@ -25,12 +25,12 @@
         self.albumTitleLabel = [[UILabel alloc] init];
         [self.albumTitleLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
         [self.albumTitleLabel setFont:[UIFont systemFontOfSize:15.0f]];
-        [self.albumTitleLabel setContentMode:UIViewContentModeCenter];
+        self.albumTitleLabel.textAlignment = NSTextAlignmentCenter;
         [self.contentView addSubview:self.albumTitleLabel];
         
         NSDictionary *viewsDictionary = @{albumImageView:self.albumImageView, albumTitleLabel:self.albumTitleLabel};
         
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[albumImageView(100)]-10-[albumTitleLabel]-10-|" options:0 metrics:nil views:viewsDictionary]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[albumImageView(100)]-10-[albumTitleLabel]-10-|" options:NSLayoutFormatAlignAllCenterX metrics:nil views:viewsDictionary]];
         
         [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[albumImageView]-10-|" options:0 metrics:nil views:viewsDictionary]];
         
