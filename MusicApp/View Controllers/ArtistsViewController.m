@@ -97,6 +97,8 @@
     artistDetailViewController.artist = self.artists[indexPath.row];
     artistDetailViewController.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:artistDetailViewController animated:YES];
+    
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 @end
